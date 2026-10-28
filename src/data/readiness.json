@@ -1,0 +1,97 @@
+[
+  {
+    "id": "domain-1-mastery-checklist",
+    "title": "Domain 1 mastery checklist",
+    "domain": "Domain 1",
+    "items": [
+      "Build, tag, push, and version an image.",
+      "Use ACR Tasks for quick, triggered, scheduled, and multi-step builds.",
+      "Deploy an image from ACR to App Service.",
+      "Configure an App Service container port and environment variables.",
+      "Use managed identity and `AcrPull` rather than hard-coded registry credentials.",
+      "Deploy a Container App revision and shift traffic.",
+      "Configure a KEDA scale rule for a Service Bus queue.",
+      "Explain why min/max replicas and idempotency matter.",
+      "Read AKS manifests and identify Deployment, Pod, Service, and ConfigMap responsibilities.",
+      "Diagnose image pulls, startup failures, port mismatches, readiness failures, and network failures."
+    ]
+  },
+  {
+    "id": "domain-2-mastery-checklist",
+    "title": "Domain 2 mastery checklist",
+    "domain": "Domain 2",
+    "items": [
+      "Explain embeddings, dimensions, distance metrics, exact search, ANN, and RAG.",
+      "Select a Cosmos partition key based on workload and access patterns.",
+      "Use point reads, parameterized queries, `TOP`, filters, pagination, and indexing thoughtfully.",
+      "Explain RU cost and consistency tradeoffs.",
+      "Define a Cosmos vector policy and distinguish flat, quantized-flat, and DiskANN behavior.",
+      "Build a change feed processor with a monitored container, lease container, and idempotent delegate.",
+      "Enable PostgreSQL's `vector` extension and query pgvector with the correct operator.",
+      "Design relational metadata and vector indexes together.",
+      "Optimize PostgreSQL connection pooling and query latency.",
+      "Implement Redis caching, TTL, invalidation, and resilient connections.",
+      "Design Redis vector indexing and metadata filters.",
+      "Explain why a semantic cache needs tenant and model-version boundaries."
+    ]
+  },
+  {
+    "id": "domain-3-mastery-checklist",
+    "title": "Domain 3 mastery checklist",
+    "domain": "Domain 3",
+    "items": [
+      "Choose a queue, topic/subscription, or Event Grid based on the delivery intent.",
+      "Explain receive-and-delete versus peek-lock behavior.",
+      "Complete, abandon, defer, and dead-letter messages correctly.",
+      "Design retries and idempotent consumers.",
+      "Create Event Grid custom events, subscriptions, filters, and retry behavior.",
+      "Explain CloudEvents, publishers, topics, subscriptions, and handlers.",
+      "Build an HTTP Function with triggers and bindings.",
+      "Connect Functions to Service Bus, Event Grid, Cosmos DB, and storage.",
+      "Select a hosting plan based on VNet, cold start, execution time, and cost requirements.",
+      "Diagnose trigger, binding, runtime, app setting, and deployment failures."
+    ]
+  },
+  {
+    "id": "domain-4-mastery-checklist",
+    "title": "Domain 4 mastery checklist",
+    "domain": "Domain 4",
+    "items": [
+      "Select managed identity and least-privilege access for a service-to-service call.",
+      "Retrieve and rotate Key Vault secrets without source-code changes.",
+      "Distinguish Key Vault secrets from App Configuration settings and feature flags.",
+      "Explain traces, spans, metrics, logs, context propagation, and exporters.",
+      "Write KQL filters, projections, aggregations, time bins, and joins.",
+      "Trace a slow AI request across API, cache, database, queue, worker, and model call.",
+      "Diagnose an authorization error versus a network error versus a configuration error.",
+      "Protect prompts, retrieved documents, credentials, and personally identifiable information in telemetry."
+    ]
+  },
+  {
+    "id": "domain-thresholds",
+    "title": "Domain thresholds",
+    "domain": "Readiness Gate",
+    "items": [
+      "Two separate timed mixed assessments at or above 95%.",
+      "No domain below 90% on either assessment.",
+      "Every wrong answer categorized as knowledge, reading, calculation, or service-selection error.",
+      "Correct explanation for every answer, including why the distractors are wrong.",
+      "A completed capstone or equivalent real implementation.",
+      "Ability to find current Microsoft documentation quickly for version-sensitive details."
+    ]
+  },
+  {
+    "id": "avoid-these-false-signals",
+    "title": "Avoid these false signals",
+    "domain": "Readiness Gate",
+    "items": [
+      "Repeating the same memorized question bank.",
+      "Recognizing wording without understanding the service.",
+      "Scoring high only on one domain.",
+      "Ignoring preview and regional differences.",
+      "Memorizing defaults without checking the current documentation.",
+      "Studying only portal clicks without understanding SDK and architecture behavior.",
+      "Treating a 95% practice result as a guaranteed exam score."
+    ]
+  }
+]

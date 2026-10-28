@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Azure CLI patterns",
+    "language": "azurecli",
+    "code": "# Build an image in Azure Container Registry\r\naz acr build --registry <registry> --image <repository>:<immutable-tag> .\r\n\r\n# Show ACR task logs\r\naz acr task logs --registry <registry> --run-id <run-id>\r\n\r\n# Assign a registry pull role to an identity\r\naz role assignment create \\\r\n  --assignee <principal-id> \\\r\n  --scope <registry-resource-id> \\\r\n  --role AcrPull\r\n\r\n# Set App Service application settings\r\naz webapp config appsettings set \\\r\n  --resource-group <resource-group> \\\r\n  --name <app-name> \\\r\n  --settings <SETTING_NAME>=<value>\r\n\r\n# Stream App Service container logs\r\naz webapp log tail \\\r\n  --resource-group <resource-group> \\\r\n  --name <app-name>",
+    "description": "# Build an image in Azure Container Registry\r az acr build --registry <registry> --image <repository>:<immutable-tag> .\r # Show ACR task logs"
+  },
+  {
+    "title": "Cosmos DB query pattern",
+    "language": "sql",
+    "code": "SELECT TOP @limit\r\n    c.id,\r\n    c.content,\r\n    c.sourceUri,\r\n    VectorDistance(c.embedding, @queryVector) AS distance\r\nFROM c\r\nWHERE c.tenantId = @tenantId\r\n  AND c.category = @category\r\nORDER BY VectorDistance(c.embedding, @queryVector)",
+    "description": "SELECT TOP @limit\r     c.id,\r     c.content,"
+  },
+  {
+    "title": "PostgreSQL vector pattern",
+    "language": "sql",
+    "code": "CREATE EXTENSION IF NOT EXISTS vector;\r\n\r\nCREATE TABLE document_chunk (\r\n    id bigserial PRIMARY KEY,\r\n    tenant_id text NOT NULL,\r\n    source_uri text NOT NULL,\r\n    content text NOT NULL,\r\n    embedding vector(1536) NOT NULL\r\n);\r\n\r\nSELECT id, source_uri, content\r\nFROM document_chunk\r\nWHERE tenant_id = $1\r\nORDER BY embedding <=> $2\r\nLIMIT 8;",
+    "description": "CREATE EXTENSION IF NOT EXISTS vector;\r CREATE TABLE document_chunk (\r     id bigserial PRIMARY KEY,"
+  },
+  {
+    "title": "KQL pattern library",
+    "language": "kusto",
+    "code": "// Recent failures\r\nrequests\r\n| where timestamp > ago(1h)\r\n| where success == false\r\n| project timestamp, operation_Name, resultCode, duration, operation_Id\r\n| order by timestamp desc",
+    "description": "// Recent failures\r requests\r // Dependency failures and latency"
+  },
+  {
+    "title": "KQL pattern library",
+    "language": "kusto",
+    "code": "// Dependency failures and latency\r\ndependencies\r\n| where timestamp > ago(24h)\r\n| summarize total=count(), failures=countif(success == false),\r\n            p95=percentile(duration, 95)\r\n    by type, target\r\n| order by failures desc, p95 desc",
+    "description": "// Recent failures\r requests\r // Dependency failures and latency"
+  },
+  {
+    "title": "KQL pattern library",
+    "language": "kusto",
+    "code": "// Queue or worker telemetry by hour\r\ntraces\r\n| where timestamp > ago(7d)\r\n| where message has_any (\"queue\", \"dead-letter\", \"retry\")\r\n| summarize events=count() by bin(timestamp, 1h), severityLevel\r\n| order by timestamp asc",
+    "description": "// Recent failures\r requests\r // Dependency failures and latency"
+  },
+  {
+    "title": "Cosmos DB SDK recognition pattern",
+    "language": "python",
+    "code": "from azure.cosmos import CosmosClient\r\nfrom azure.identity import DefaultAzureCredential\r\n\r\ncredential = DefaultAzureCredential()\r\nclient = CosmosClient(account_url, credential=credential)\r\ndatabase = client.get_database_client(database_name)\r\ncontainer = database.get_container_client(container_name)\r\n\r\n# Prefer a point read when both values are known.\r\nitem = container.read_item(item=item_id, partition_key=partition_key)\r\n\r\n# Use parameters, a partition key, and a bounded projection for queries.\r\nquery = \"\"\"\r\nSELECT TOP 10 c.id, c.title, c.embedding\r\nFROM c\r\nWHERE c.tenantId = @tenantId\r\n\"\"\"\r\nitems = container.query_items(\r\n  query=query,\r\n  parameters=[{\"name\": \"@tenantId\", \"value\": tenant_id}],\r\n  partition_key=partition_key,\r\n)",
+    "description": "The important sequence is client -> database -> container -> operation:\r from azure.cosmos import CosmosClient\r from azure.identity import DefaultAzureCredential"
+  },
+  {
+    "title": "PostgreSQL SDK and resource pattern",
+    "language": "python",
+    "code": "from psycopg_pool import ConnectionPool\r\n\r\npool = ConnectionPool(\r\n  conninfo=connection_string,\r\n  min_size=2,\r\n  max_size=20,\r\n  timeout=5,\r\n)\r\n\r\nwith pool.connection() as connection:\r\n  with connection.cursor() as cursor:\r\n    cursor.execute(\r\n      \"\"\"\r\n      SELECT id, source_uri, content\r\n      FROM document_chunk\r\n      WHERE tenant_id = %s\r\n      ORDER BY embedding <=> %s\r\n      LIMIT %s\r\n      \"\"\",\r\n      (tenant_id, query_vector, result_limit),\r\n    )\r\n    rows = cursor.fetchall()",
+    "description": "For PostgreSQL, recognize three separate concerns:\r 1. **Connection:** Use a bounded pool, keep connections warm, and avoid a connection per request.\r 2. **Query:** Use parameters, appropriate indexes, cancellation, and a result limit."
+  },
+  {
+    "title": "Redis SDK and cache pattern",
+    "language": "python",
+    "code": "value = redis.get(cache_key)\r\nif value is None:\r\n  value = load_from_durable_store(record_id)\r\n  redis.set(cache_key, serialize(value), ex=ttl_seconds)\r\nreturn deserialize(value)",
+    "description": "The exam may present cache code or ask what is missing. The normal cache-aside sequence is:\r value = redis.get(cache_key)\r if value is None:"
+  },
+  {
+    "title": "Service Bus SDK recognition pattern",
+    "language": "python",
+    "code": "async with service_bus_client:\r\n  receiver = service_bus_client.get_queue_receiver(queue_name=queue_name)\r\n  async with receiver:\r\n    messages = await receiver.receive_messages(max_message_count=10)\r\n    for message in messages:\r\n      try:\r\n        await apply_idempotent_business_operation(message)\r\n        await receiver.complete_message(message)\r\n      except TransientError:\r\n        await receiver.abandon_message(message)\r\n      except PermanentValidationError:\r\n        await receiver.dead_letter_message(message, reason=\"invalid-payload\")",
+    "description": "The receive-process-settle sequence is the core pattern:\r async with service_bus_client:\r   receiver = service_bus_client.get_queue_receiver(queue_name=queue_name)"
+  }
+]

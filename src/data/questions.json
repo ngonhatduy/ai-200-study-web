@@ -1,0 +1,4628 @@
+[
+  {
+    "id": "drill-1",
+    "num": "1",
+    "title": "Image pull failure",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "An image builds successfully in ACR, but a Container App cannot start it. The registry is private. What should you check first?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Check the identity used by the Container App and whether it has the required pull permission on the registry. Then check the image name/tag/digest and container startup logs. A successful build does not prove runtime pull authorization."
+  },
+  {
+    "id": "drill-2",
+    "num": "2",
+    "title": "Port mismatch",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "A container responds correctly on `localhost:8080`, but App Service reports that the container never becomes ready. What is the likely issue?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "The hosting configuration and application listener do not agree on the target port or the application is bound only to loopback. Check the container port setting, application binding address, startup logs, and health endpoint."
+  },
+  {
+    "id": "drill-3",
+    "num": "3",
+    "title": "Queue worker scaling",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "A worker should scale when Service Bus messages accumulate, but it stays at zero replicas. What are the likely causes?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Check that the custom scale rule is configured, the queue metadata is correct, the scaler can authenticate, the revision is active, and the app has an appropriate min/max range. If ingress is disabled and no event rule is active, the app may have no way to start."
+  },
+  {
+    "id": "drill-4",
+    "num": "4",
+    "title": "Revision rollback",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "A new image is unhealthy, but the previous image is still deployed. Which Container Apps capability should be used?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Use revisions and traffic allocation to route traffic back to the known-good revision. Do not mutate the old revision; deploy a corrected new revision later."
+  },
+  {
+    "id": "drill-5",
+    "num": "5",
+    "title": "AKS service failure",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "Pods are running, but clients receive connection failures. Which resources should you inspect?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Inspect the Service selector, target port, endpoints, DNS name, ingress path if used, network policy, and connectivity from the client boundary. Running pods alone do not prove that a Service routes traffic to them.\r\n\r\n### Domain 2 drills"
+  },
+  {
+    "id": "drill-6",
+    "num": "6",
+    "title": "Cosmos point read",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "The application knows an item ID and its partition key. Should it issue a cross-partition query?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "No. Use a point read with the ID and partition key. It is generally more direct and efficient than a broad query."
+  },
+  {
+    "id": "drill-7",
+    "num": "7",
+    "title": "Hot partition",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "Most writes use the same tenant ID, and one physical partition is throttled. What design issue should you investigate?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "The partition key may be too low-cardinality or the workload is concentrated on one value. Re-evaluate access patterns and partition-key distribution rather than simply increasing every query timeout."
+  },
+  {
+    "id": "drill-8",
+    "num": "8",
+    "title": "Vector dimension mismatch",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "Stored vectors have 1536 dimensions, but a query vector has 3072 dimensions. What is the correct fix?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Use the same compatible embedding model and dimension for both stored and query vectors, or re-embed the data and update the vector policy/index. Do not truncate vectors casually."
+  },
+  {
+    "id": "drill-9",
+    "num": "9",
+    "title": "Approximate search choice",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "A dataset has millions of vectors and requires low latency. Exact search is too expensive, but a small recall tradeoff is acceptable. Which class of index is appropriate?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "An approximate nearest-neighbor index such as DiskANN or HNSW, depending on the selected service. Validate recall and latency with representative embeddings."
+  },
+  {
+    "id": "drill-10",
+    "num": "10",
+    "title": "Cosmos change feed duplicate",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "A change feed worker sometimes processes the same item twice after a crash. Is this necessarily a service defect?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "No. The change feed processor provides at-least-once semantics, so the handler must be idempotent. Use a stable operation key or idempotency record before applying an external side effect."
+  },
+  {
+    "id": "drill-11",
+    "num": "11",
+    "title": "PostgreSQL operator",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "The application wants cosine distance in pgvector. Which operator should it recognize?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "`<=>` is the cosine distance operator. Verify the current pgvector documentation and ensure the query ordering and threshold interpretation match distance semantics."
+  },
+  {
+    "id": "drill-12",
+    "num": "12",
+    "title": "RAG data isolation",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "A vector query returns a relevant document belonging to another tenant. What is the root design failure?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Authorization metadata was not enforced as part of retrieval. Apply tenant and access-control filters before returning candidates and test cross-tenant queries explicitly."
+  },
+  {
+    "id": "drill-13",
+    "num": "13",
+    "title": "Redis invalidation",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "A product price changes in PostgreSQL, but the API keeps returning the old Redis value. What is missing?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "A cache invalidation or versioning strategy. TTL alone limits staleness but does not guarantee immediate correctness. Invalidate or version the key when the source changes."
+  },
+  {
+    "id": "drill-14",
+    "num": "14",
+    "title": "Semantic cache safety",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "Two users ask semantically similar questions, but their permissions differ. Can they share one semantic cache index?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Not without a strict authorization partition or filter. Partition by tenant/user/security scope and include model, prompt, and policy versions as appropriate.\r\n\r\n### Domain 3 drills"
+  },
+  {
+    "id": "drill-15",
+    "num": "15",
+    "title": "Work versus notification",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "An order must be processed exactly once from the application's business perspective, with retries and a dead-letter path. Which service is the better first choice?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Service Bus, normally with peek-lock, idempotent processing, bounded retries, and dead-letter handling. Exactly-once business effect is implemented by the consumer; transport delivery is not a magic exactly-once guarantee."
+  },
+  {
+    "id": "drill-16",
+    "num": "16",
+    "title": "Fan-out event",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "A document-created event must independently notify indexing, audit, and analytics consumers. Which model fits?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "A publish/subscribe model. Use an Event Grid topic or a Service Bus topic depending on whether the message is a lightweight event notification or durable business work requiring settlement and replay semantics."
+  },
+  {
+    "id": "drill-17",
+    "num": "17",
+    "title": "Peek-lock crash",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "A worker completes a database transaction and crashes before completing the Service Bus message. What should the consumer expect?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "The message may be redelivered after the lock expires. The database operation must be idempotent or protected by a deduplication key."
+  },
+  {
+    "id": "drill-18",
+    "num": "18",
+    "title": "Event Grid filter",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "Only `DocumentCreated` events for `/customers/contoso/` should reach a Function. Where should filtering be applied?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Configure the Event Grid subscription subject and event-type filters, then keep application validation and authorization in the Function as defense in depth."
+  },
+  {
+    "id": "drill-19",
+    "num": "19",
+    "title": "Long HTTP request",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "An HTTP Function performs a 10-minute embedding job and times out. What architectural change is appropriate?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Accept the request, enqueue durable work in Service Bus, and return an operation ID. Process asynchronously in a Function or worker and expose status or completion notification."
+  },
+  {
+    "id": "drill-20",
+    "num": "20",
+    "title": "Binding versus SDK",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A Function binding cannot express a required transaction and custom retry policy. What should the developer do?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Use the Azure SDK directly for the operation while retaining the Function trigger as appropriate. Bindings are optional integration conveniences, not a requirement when more control is needed.\r\n\r\n### Domain 4 drills"
+  },
+  {
+    "id": "drill-21",
+    "num": "21",
+    "title": "Secret storage",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A container image contains a database password in an environment variable set during the Docker build. What is wrong?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "The secret can be extracted from image layers or metadata and is difficult to rotate. Store it in Key Vault and retrieve it at runtime using managed identity or a supported secure reference."
+  },
+  {
+    "id": "drill-22",
+    "num": "22",
+    "title": "Configuration choice",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A feature flag should be changed by operations without rebuilding the image. Where should it go?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Azure App Configuration. If the value is sensitive, keep the secret in Key Vault instead."
+  },
+  {
+    "id": "drill-23",
+    "num": "23",
+    "title": "Identity versus authorization",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "An App Service has a managed identity and can authenticate to Azure, but it receives a forbidden error reading a secret. What should you check?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "The identity's data-plane authorization on the Key Vault, the vault's authorization model, the secret name/version, and any network restrictions. Authentication success does not imply permission."
+  },
+  {
+    "id": "drill-24",
+    "num": "24",
+    "title": "Trace analysis",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "The API latency is high, but CPU is normal. Which telemetry should you inspect next?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "The distributed trace and dependency spans. Separate cache, vector database, queue, network, and model-call duration to identify the actual bottleneck."
+  },
+  {
+    "id": "drill-25",
+    "num": "25",
+    "title": "KQL aggregation",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "You need hourly p95 request latency and failure count. Which KQL concepts are required?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Filter by time with `ago()`, group time with `bin()`, aggregate with `percentile()` and `countif()`, then sort by timestamp."
+  },
+  {
+    "id": "drill-26",
+    "num": "26",
+    "title": "Sensitive telemetry",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A developer wants to log every prompt and retrieved document to troubleshoot a production AI app. What should you recommend?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Use redaction, sampling, hashes or identifiers, controlled access, and a documented data-retention policy. Log enough metadata to correlate failures without exposing secrets, personal data, or confidential content by default.\r\n\r\n### Mixed drills"
+  },
+  {
+    "id": "drill-27",
+    "num": "27",
+    "title": "Service selection",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "You need durable source documents, vector retrieval, low-latency response caching, and asynchronous re-indexing. Which combination is reasonable?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Cosmos DB or PostgreSQL as the durable vector-capable store, Redis as a cache, and Service Bus plus a worker or Function for asynchronous re-indexing. The exact choice depends on document model, relational needs, and scale."
+  },
+  {
+    "id": "drill-28",
+    "num": "28",
+    "title": "Backpressure",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A model provider slows down and the Service Bus queue grows. Workers scale rapidly and overload the database. What controls should be added?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Cap `maxReplicas`, tune the KEDA threshold, use bounded concurrency, apply downstream connection limits, use retries with backoff, and monitor queue age and dependency latency. Scaling should not blindly amplify downstream pressure."
+  },
+  {
+    "id": "drill-29",
+    "num": "29",
+    "title": "Deployment diagnosis",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "The API revision is healthy, but only a small percentage of users see the new behavior. What should you inspect?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Revision traffic allocation, ingress routing, client caching, deployment slot or gateway configuration, and whether different endpoints point to different revisions."
+  },
+  {
+    "id": "drill-30",
+    "num": "30",
+    "title": "Root-cause order",
+    "category": "drills",
+    "set": "Original Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A request returns HTTP 500 after a deployment. What is the best first diagnostic sequence?",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "Establish the exact time and correlation ID, confirm the active revision, inspect application and dependency exceptions, compare configuration and identity changes, then reproduce safely. Avoid changing several unrelated settings at once.\r\n\r\n---"
+  },
+  {
+    "id": "q-31",
+    "num": "31",
+    "title": "ACR base-image maintenance",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "An organization wants application images rebuilt automatically whenever the approved operating-system base image changes. Which ACR Task capability fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A manual quick task"
+      },
+      {
+        "key": "B",
+        "text": "A topic subscription"
+      },
+      {
+        "key": "C",
+        "text": "A base-image update trigger"
+      },
+      {
+        "key": "D",
+        "text": "A Container Apps revision"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A base-image update trigger starts a rebuild when a tracked parent image changes."
+  },
+  {
+    "id": "q-32",
+    "num": "32",
+    "title": "ACR quick build",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A developer wants Azure to build and push an image from the current source context without installing Docker locally. Which approach is the best fit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An ACR quick task"
+      },
+      {
+        "key": "B",
+        "text": "An AKS Deployment"
+      },
+      {
+        "key": "C",
+        "text": "A Service Bus queue"
+      },
+      {
+        "key": "D",
+        "text": "An Event Grid subscription"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "An ACR quick task performs the cloud-hosted build and push from a source context."
+  },
+  {
+    "id": "q-33",
+    "num": "33",
+    "title": "ACR multi-step task",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A build pipeline must build an image, run integration tests against it, and push the image only if the tests pass. Which capability is designed for this sequence?",
+    "options": [
+      {
+        "key": "A",
+        "text": "App Service deployment slots"
+      },
+      {
+        "key": "B",
+        "text": "A Container Apps revision"
+      },
+      {
+        "key": "C",
+        "text": "An ACR multi-step task"
+      },
+      {
+        "key": "D",
+        "text": "A Cosmos DB change feed"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Multi-step ACR Tasks define build, run, test, and publish stages with dependencies."
+  },
+  {
+    "id": "q-34",
+    "num": "34",
+    "title": "Private registry authorization",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "An App Service can reach the network but receives an authorization error while pulling a private ACR image. What is the most direct correction?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a second HTTP route"
+      },
+      {
+        "key": "B",
+        "text": "Grant the App Service identity the required registry pull role"
+      },
+      {
+        "key": "C",
+        "text": "Increase the container CPU limit"
+      },
+      {
+        "key": "D",
+        "text": "Add a Redis cache"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The runtime identity needs data-plane permission to pull the image, commonly the `AcrPull` role."
+  },
+  {
+    "id": "q-35",
+    "num": "35",
+    "title": "Container startup port",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A container works locally on port 8080 but is unhealthy in App Service. Which combination should be checked first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The vector distance metric and RU charge"
+      },
+      {
+        "key": "B",
+        "text": "The Service Bus lock duration and retry count"
+      },
+      {
+        "key": "C",
+        "text": "The configured target port and whether the process listens on the expected interface"
+      },
+      {
+        "key": "D",
+        "text": "The Key Vault secret version only"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Port mismatch or binding only to loopback commonly prevents the hosting platform from reaching the process."
+  },
+  {
+    "id": "q-36",
+    "num": "36",
+    "title": "Container Apps deployment model",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which statement about a Container Apps revision is correct?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It is an immutable snapshot of an app version"
+      },
+      {
+        "key": "B",
+        "text": "It is a Service Bus message lock"
+      },
+      {
+        "key": "C",
+        "text": "It is a Cosmos DB partition"
+      },
+      {
+        "key": "D",
+        "text": "It is a mutable Docker image tag"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A revision represents an immutable deployable version; updates create or activate another revision."
+  },
+  {
+    "id": "q-37",
+    "num": "37",
+    "title": "Controlled rollout",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A team wants to send 10 percent of traffic to a new Container Apps version and keep 90 percent on the old version. Which feature is most appropriate?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A Redis TTL"
+      },
+      {
+        "key": "B",
+        "text": "A Cosmos change feed lease"
+      },
+      {
+        "key": "C",
+        "text": "A Service Bus dead-letter queue"
+      },
+      {
+        "key": "D",
+        "text": "Multiple revisions with traffic allocation"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Multiple revisions support controlled traffic splitting and rollback."
+  },
+  {
+    "id": "q-38",
+    "num": "38",
+    "title": "KEDA authentication",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A Container Apps KEDA rule must read a Service Bus queue without storing a connection string in application code. What is the preferred approach when supported?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Put the string in the Dockerfile"
+      },
+      {
+        "key": "B",
+        "text": "Use managed identity for the scale rule"
+      },
+      {
+        "key": "C",
+        "text": "Write the string to application logs"
+      },
+      {
+        "key": "D",
+        "text": "Use a public queue"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Managed identity avoids distributing a long-lived credential. A Container Apps secret is the fallback when identity is not supported by the chosen scaler."
+  },
+  {
+    "id": "q-39",
+    "num": "39",
+    "title": "KEDA downstream protection",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A worker queue grows because a database is slow. Unlimited scale-out would make the database failure worse. Which control is most important?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Remove all retries"
+      },
+      {
+        "key": "B",
+        "text": "Disable tracing"
+      },
+      {
+        "key": "C",
+        "text": "Set a suitable maximum replica count and bounded concurrency"
+      },
+      {
+        "key": "D",
+        "text": "Increase the vector dimensions"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Scaling must be bounded by downstream capacity; combine `maxReplicas`, concurrency limits, and retry backoff."
+  },
+  {
+    "id": "q-40",
+    "num": "40",
+    "title": "AKS connectivity",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Pods are ready, but a client cannot connect through a Kubernetes Service. Which check is most discriminating?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Compare the Service selector and target port with the Pod labels and container port"
+      },
+      {
+        "key": "B",
+        "text": "Rebuild the image with a different tag"
+      },
+      {
+        "key": "C",
+        "text": "Rotate the Key Vault secret"
+      },
+      {
+        "key": "D",
+        "text": "Increase the Cosmos consistency level"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A selector or target-port mismatch can leave healthy Pods unreachable through the Service."
+  },
+  {
+    "id": "q-41",
+    "num": "41",
+    "title": "Cosmos partition distribution",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which partition-key property generally helps distribute a high-volume workload?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A single constant value"
+      },
+      {
+        "key": "B",
+        "text": "A value with enough cardinality and an even access distribution"
+      },
+      {
+        "key": "C",
+        "text": "A value that is missing on writes"
+      },
+      {
+        "key": "D",
+        "text": "A value selected only because it is short"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Cardinality and workload distribution reduce hot partitions; the key must also match access patterns."
+  },
+  {
+    "id": "q-42",
+    "num": "42",
+    "title": "Cosmos point read",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "The application has both an item ID and its partition-key value. Which operation should normally be preferred?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A full cross-partition query"
+      },
+      {
+        "key": "B",
+        "text": "A point read"
+      },
+      {
+        "key": "C",
+        "text": "A change feed scan"
+      },
+      {
+        "key": "D",
+        "text": "A vector search"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A point read uses the exact identity and partition key and avoids unnecessary query work."
+  },
+  {
+    "id": "q-43",
+    "num": "43",
+    "title": "Cosmos RU reduction",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which change most directly reduces cost and latency for a vector query that only needs the top five authorized results?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Return every document and filter in application memory"
+      },
+      {
+        "key": "B",
+        "text": "Remove the partition key"
+      },
+      {
+        "key": "C",
+        "text": "Use an authorization filter and `TOP 5` with a projection"
+      },
+      {
+        "key": "D",
+        "text": "Increase the embedding dimension"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Restrict candidates, fields, and result count before returning data."
+  },
+  {
+    "id": "q-44",
+    "num": "44",
+    "title": "Consistency tradeoff",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "An application requires the freshest possible reads across replicas and accepts stronger latency or availability tradeoffs. Which direction should the design take?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Choose a stronger consistency guarantee after evaluating regional impact"
+      },
+      {
+        "key": "B",
+        "text": "Always use eventual consistency"
+      },
+      {
+        "key": "C",
+        "text": "Disable all indexing"
+      },
+      {
+        "key": "D",
+        "text": "Replace the database with Redis"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Consistency is a requirement tradeoff; stronger guarantees can affect latency and multi-region behavior."
+  },
+  {
+    "id": "q-45",
+    "num": "45",
+    "title": "Vector dimension mismatch",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "The stored index uses 1536-dimensional embeddings, but a new query model returns 3072 dimensions. What is the sound design?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Silently discard half the values"
+      },
+      {
+        "key": "B",
+        "text": "Add random padding"
+      },
+      {
+        "key": "C",
+        "text": "Mix both models in one vector path"
+      },
+      {
+        "key": "D",
+        "text": "Use a compatible model or re-embed and rebuild the vector configuration"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Stored and query vectors must be compatible in model, dimension, and metric assumptions."
+  },
+  {
+    "id": "q-46",
+    "num": "46",
+    "title": "Exact vector retrieval",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which scenario most strongly favors an exact or flat vector search?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Billions of vectors with strict low latency and a measured recall tradeoff"
+      },
+      {
+        "key": "B",
+        "text": "A small, filtered candidate set where exact recall matters"
+      },
+      {
+        "key": "C",
+        "text": "A workload that never stores embeddings"
+      },
+      {
+        "key": "D",
+        "text": "A workload that needs only TTL caching"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Exact search is reasonable for a small or tightly filtered set when recall is more important than index efficiency."
+  },
+  {
+    "id": "q-47",
+    "num": "47",
+    "title": "Approximate vector retrieval",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A dataset contains millions of vectors and the application accepts a measured recall tradeoff for lower latency. Which approach is appropriate?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An approximate nearest-neighbor index such as DiskANN or HNSW"
+      },
+      {
+        "key": "B",
+        "text": "A full table scan for every request"
+      },
+      {
+        "key": "C",
+        "text": "A Service Bus topic"
+      },
+      {
+        "key": "D",
+        "text": "A Key Vault certificate"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "ANN indexes reduce search work at the cost of some recall or determinism."
+  },
+  {
+    "id": "q-48",
+    "num": "48",
+    "title": "Change feed coordination",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Why does a Cosmos DB change feed processor use a lease container?",
+    "options": [
+      {
+        "key": "A",
+        "text": "To store model prompts"
+      },
+      {
+        "key": "B",
+        "text": "To cache HTTP responses"
+      },
+      {
+        "key": "C",
+        "text": "To coordinate partition-range ownership and progress among workers"
+      },
+      {
+        "key": "D",
+        "text": "To replace the monitored container"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Lease documents coordinate workers and checkpoint progress for partition ranges."
+  },
+  {
+    "id": "q-49",
+    "num": "49",
+    "title": "Change feed failure semantics",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A change feed delegate sends an email and then crashes before its checkpoint is safely advanced. What must the design tolerate?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Guaranteed zero delivery"
+      },
+      {
+        "key": "B",
+        "text": "Automatic exactly-once side effects"
+      },
+      {
+        "key": "C",
+        "text": "Permanent loss of all later changes"
+      },
+      {
+        "key": "D",
+        "text": "Reprocessing of the same change and a duplicate-safe side effect"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "At-least-once processing requires idempotent external effects."
+  },
+  {
+    "id": "q-50",
+    "num": "50",
+    "title": "PostgreSQL extension name",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "What extension name is used when enabling pgvector in PostgreSQL?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`embedding`"
+      },
+      {
+        "key": "B",
+        "text": "`vector`"
+      },
+      {
+        "key": "C",
+        "text": "`pgai`"
+      },
+      {
+        "key": "D",
+        "text": "`cosmos_vector`"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The extension is enabled with `CREATE EXTENSION vector`."
+  },
+  {
+    "id": "q-51",
+    "num": "51",
+    "title": "PostgreSQL cosine distance",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which pgvector operator represents cosine distance?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`<->`"
+      },
+      {
+        "key": "B",
+        "text": "`<#>`"
+      },
+      {
+        "key": "C",
+        "text": "`<=>`"
+      },
+      {
+        "key": "D",
+        "text": "`==`"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "`<=>` is the cosine-distance operator; query ordering must account for distance semantics."
+  },
+  {
+    "id": "q-52",
+    "num": "52",
+    "title": "PostgreSQL filtered retrieval",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A RAG query must restrict results to one tenant and rank by vector distance. What should be designed together?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The tenant predicate, vector query, result limit, and supporting indexes"
+      },
+      {
+        "key": "B",
+        "text": "Only the model temperature"
+      },
+      {
+        "key": "C",
+        "text": "Only the Redis TTL"
+      },
+      {
+        "key": "D",
+        "text": "Only the Function trigger"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Authorization filtering and vector ranking are part of one retrieval design, not separate afterthoughts."
+  },
+  {
+    "id": "q-53",
+    "num": "53",
+    "title": "PostgreSQL connection pressure",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "An API opens a new PostgreSQL connection for every request and eventually exhausts the server connection limit. What is the best correction?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add more connection creation per request"
+      },
+      {
+        "key": "B",
+        "text": "Disable timeouts"
+      },
+      {
+        "key": "C",
+        "text": "Store passwords in the image"
+      },
+      {
+        "key": "D",
+        "text": "Reuse a bounded connection pool and tune concurrency"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A bounded pool controls resource use and avoids connection storms."
+  },
+  {
+    "id": "q-54",
+    "num": "54",
+    "title": "Redis TTL meaning",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "What does a Redis TTL guarantee?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Immediate invalidation whenever the source database changes"
+      },
+      {
+        "key": "B",
+        "text": "Expiration after a configured lifetime, but not immediate source-change correctness"
+      },
+      {
+        "key": "C",
+        "text": "Durable transactional storage"
+      },
+      {
+        "key": "D",
+        "text": "Exactly-once message delivery"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "TTL bounds age but must be combined with invalidation or versioning for immediate correctness."
+  },
+  {
+    "id": "q-55",
+    "num": "55",
+    "title": "Semantic cache isolation",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which metadata is most important when a semantic cache serves multiple tenants?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Only the prompt length"
+      },
+      {
+        "key": "B",
+        "text": "Only the Redis host name"
+      },
+      {
+        "key": "C",
+        "text": "Tenant or authorization scope plus model and prompt version"
+      },
+      {
+        "key": "D",
+        "text": "Only the cache key's creation time"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Similar prompts can have different permitted data and behavior; scope and version metadata prevent unsafe reuse."
+  },
+  {
+    "id": "q-56",
+    "num": "56",
+    "title": "Redis vector provisioning",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "A team decides to use RediSearch vector indexes in Azure Managed Redis. Which action belongs during provisioning?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Enable the required module and choose compatible clustering and eviction settings"
+      },
+      {
+        "key": "B",
+        "text": "Add the module after the cache is already created"
+      },
+      {
+        "key": "C",
+        "text": "Put vectors only in application logs"
+      },
+      {
+        "key": "D",
+        "text": "Disable TLS"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Vector capabilities and module/tier requirements can be provisioning choices and must be planned early."
+  },
+  {
+    "id": "q-57",
+    "num": "57",
+    "title": "Blob and vector roles",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which architecture correctly separates source documents from semantic retrieval data?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Store only embeddings and discard the source"
+      },
+      {
+        "key": "B",
+        "text": "Store binary documents in Redis only"
+      },
+      {
+        "key": "C",
+        "text": "Store documents in Service Bus permanently"
+      },
+      {
+        "key": "D",
+        "text": "Store source content in Blob Storage and searchable metadata/vectors in a data service"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Blob Storage is durable object storage; vector data and metadata support retrieval."
+  },
+  {
+    "id": "q-58",
+    "num": "58",
+    "title": "Event Hubs selection",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which workload most strongly favors Event Hubs?",
+    "options": [
+      {
+        "key": "A",
+        "text": "One invoice command requiring settlement and dead-lettering"
+      },
+      {
+        "key": "B",
+        "text": "High-throughput partitioned telemetry consumed by independent consumer groups"
+      },
+      {
+        "key": "C",
+        "text": "Secret retrieval"
+      },
+      {
+        "key": "D",
+        "text": "Feature flag refresh"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Event Hubs is designed for high-throughput event streams and checkpointed consumers."
+  },
+  {
+    "id": "q-59",
+    "num": "59",
+    "title": "Service Bus fan-out",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Several independent applications must each receive a copy of every business event. Which Service Bus design fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "One queue with receive-and-delete"
+      },
+      {
+        "key": "B",
+        "text": "One Function with no durable store"
+      },
+      {
+        "key": "C",
+        "text": "A topic with separate subscriptions"
+      },
+      {
+        "key": "D",
+        "text": "One Redis key"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Topics and subscriptions provide durable publish/subscribe fan-out."
+  },
+  {
+    "id": "q-60",
+    "num": "60",
+    "title": "Receive-and-delete risk",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "What is the main risk of Service Bus receive-and-delete mode?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The message can be removed before application processing completes"
+      },
+      {
+        "key": "B",
+        "text": "The message can never be delivered"
+      },
+      {
+        "key": "C",
+        "text": "The topic cannot have subscriptions"
+      },
+      {
+        "key": "D",
+        "text": "The queue always scales to zero"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A consumer crash after receipt can lose the message."
+  },
+  {
+    "id": "q-61",
+    "num": "61",
+    "title": "Peek-lock completion",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "When should a worker complete a peek-locked Service Bus message?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Before validating the message"
+      },
+      {
+        "key": "B",
+        "text": "Immediately when it is received"
+      },
+      {
+        "key": "C",
+        "text": "Only after the durable business effect succeeds"
+      },
+      {
+        "key": "D",
+        "text": "Only after deleting the queue"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Completion acknowledges successful processing; otherwise the message can be retried or dead-lettered."
+  },
+  {
+    "id": "q-62",
+    "num": "62",
+    "title": "Poison message",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "A message repeatedly fails because its payload violates a permanent schema rule. What is the appropriate path?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Retry forever"
+      },
+      {
+        "key": "B",
+        "text": "Dead-letter it with a diagnostic reason"
+      },
+      {
+        "key": "C",
+        "text": "Increase the model temperature"
+      },
+      {
+        "key": "D",
+        "text": "Disable logging"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A deterministic poison message should be isolated for inspection rather than retrying forever."
+  },
+  {
+    "id": "q-63",
+    "num": "63",
+    "title": "Event Grid filtering",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Where should an Event Grid subscription filter events by event type and subject prefix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "In the Dockerfile"
+      },
+      {
+        "key": "B",
+        "text": "In the vector index"
+      },
+      {
+        "key": "C",
+        "text": "In the event subscription configuration"
+      },
+      {
+        "key": "D",
+        "text": "In Key Vault"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Subscription filters reduce unwanted delivery; the handler still validates authorization."
+  },
+  {
+    "id": "q-64",
+    "num": "64",
+    "title": "Event Grid duplicate delivery",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "An Event Grid handler receives the same event twice after a transient response failure. What should the handler do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Be idempotent using an event ID or business operation key"
+      },
+      {
+        "key": "B",
+        "text": "Assume the second event is always malicious"
+      },
+      {
+        "key": "C",
+        "text": "Delete all future events"
+      },
+      {
+        "key": "D",
+        "text": "Store the event only in memory"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Retryable event delivery means duplicate-safe processing is required."
+  },
+  {
+    "id": "q-65",
+    "num": "65",
+    "title": "Function trigger rule",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "How many triggers starts one Azure Function invocation definition?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero or any number"
+      },
+      {
+        "key": "B",
+        "text": "Exactly one"
+      },
+      {
+        "key": "C",
+        "text": "One for every output binding"
+      },
+      {
+        "key": "D",
+        "text": "One per tenant"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A Function has exactly one trigger; it can have multiple input or output bindings."
+  },
+  {
+    "id": "q-66",
+    "num": "66",
+    "title": "Binding limitation",
+    "category": "domain_sample",
+    "set": "Domain Sample Questions",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "A binding cannot express a required transaction and custom retry policy. What is the best response?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Put credentials in the binding name"
+      },
+      {
+        "key": "B",
+        "text": "Use the Azure SDK directly for the operation"
+      },
+      {
+        "key": "C",
+        "text": "Remove all retries"
+      },
+      {
+        "key": "D",
+        "text": "Convert the database into a cache"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Bindings are optional conveniences; SDK clients provide finer control."
+  },
+  {
+    "id": "q-67",
+    "num": "67",
+    "title": "Long-running HTTP Function",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "An HTTP Function needs ten minutes to process an uploaded document. What is the best API pattern?\r\n\r\nA. Keep the HTTP request open indefinitely  \r\nB. Return success before accepting the work  \r\nC. Enqueue work and return an operation ID for status tracking  \r\nD. Put the document in a log message",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "C. Long work should be durable and asynchronous, with a status or completion path."
+  },
+  {
+    "id": "q-68",
+    "num": "68",
+    "title": "Queue Storage versus Service Bus",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "Which requirement most clearly favors Service Bus over Queue Storage?\r\n\r\nA. A simple single-consumer background task  \r\nB. A small transient test queue  \r\nC. A queue with topics, subscriptions, locks, and dead-letter handling  \r\nD. A local in-memory cache",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "C. Service Bus provides richer enterprise messaging semantics."
+  },
+  {
+    "id": "q-69",
+    "num": "69",
+    "title": "Identity and authorization",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 1",
+    "type": "drill",
+    "question": "An application has a managed identity but receives HTTP 403 from Key Vault. What should be checked first?\r\n\r\nA. The vector distance function  \r\nB. The Docker base image  \r\nC. The Redis TTL  \r\nD. The identity's Key Vault data-plane role and vault authorization model",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "D. Identity proves who called; the role and vault policy determine what it can do."
+  },
+  {
+    "id": "q-70",
+    "num": "70",
+    "title": "Key Vault versus App Configuration",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "Where should a non-secret feature flag be stored so operations can change it without rebuilding the image?\r\n\r\nA. Key Vault as a certificate  \r\nB. App Configuration  \r\nC. A Dockerfile secret  \r\nD. A Service Bus dead-letter queue",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "B. App Configuration stores settings and feature flags; Key Vault stores secrets."
+  },
+  {
+    "id": "q-71",
+    "num": "71",
+    "title": "Secret rotation",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "Which sequence is safest for rotating a database credential?\r\n\r\nA. Commit the new password, rebuild every image, then revoke the old value  \r\nB. Delete the old secret first and hope all instances restart  \r\nC. Create a new secret version, grant access, switch consumers, verify, then revoke the old credential  \r\nD. Print both credentials in a deployment log",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "C. Staged rotation prevents an avoidable outage and keeps secrets out of source and logs."
+  },
+  {
+    "id": "q-72",
+    "num": "72",
+    "title": "Distributed tracing",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 2",
+    "type": "drill",
+    "question": "Which telemetry structure best shows time spent in the vector database and model provider for one API request?\r\n\r\nA. A distributed trace with dependency spans and propagated context  \r\nB. A single CPU gauge  \r\nC. A container image tag  \r\nD. A cache TTL",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "A. Trace context connects the request and dependency spans end to end."
+  },
+  {
+    "id": "q-73",
+    "num": "73",
+    "title": "KQL p95 latency",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "Which KQL combination calculates hourly p95 latency?\r\n\r\nA. `project` only  \r\nB. `where` with no time filter  \r\nC. `top` without aggregation  \r\nD. `ago()`, `bin()`, and `percentile(duration, 95)`",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "D. Filter the window, group time, and calculate the percentile."
+  },
+  {
+    "id": "q-74",
+    "num": "74",
+    "title": "Sensitive telemetry",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "What is the safest default for production prompt logging?\r\n\r\nA. Log every prompt and retrieved document in plain text  \r\nB. Redact or avoid sensitive content and retain correlation metadata instead  \r\nC. Disable all monitoring  \r\nD. Put prompts in image labels",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "B. Observability must support diagnosis without creating a data-leak path."
+  },
+  {
+    "id": "q-75",
+    "num": "75",
+    "title": "Least privilege",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 3",
+    "type": "drill",
+    "question": "Which role assignment is safest?\r\n\r\nA. Owner at subscription scope for every application identity  \r\nB. Contributor at tenant scope for every worker  \r\nC. The narrowest data-plane role at the smallest useful resource scope  \r\nD. A shared administrator password",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "C. Least privilege limits blast radius while allowing the required operation."
+  },
+  {
+    "id": "q-76",
+    "num": "76",
+    "title": "Deployment diagnosis",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A deployment reports success, but users still receive the old behavior. What should be checked first?\r\n\r\nA. Active revision, traffic allocation, deployment slot, and gateway route  \r\nB. The embedding distance metric  \r\nC. The dead-letter reason only  \r\nD. The PostgreSQL table type only",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "A. Successful deployment does not prove that client traffic reaches the new version."
+  },
+  {
+    "id": "q-77",
+    "num": "77",
+    "title": "Backpressure",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A model provider throttles requests while the worker queue grows. Which design is safest?\r\n\r\nA. Remove the queue and call the model synchronously  \r\nB. Allow unlimited worker replicas  \r\nC. Disable all retry handling  \r\nD. Cap replicas, bound concurrency, use backoff, and monitor queue age",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "D. Backpressure protects the slow dependency and makes the queue an intentional buffer."
+  },
+  {
+    "id": "q-78",
+    "num": "78",
+    "title": "RAG authorization",
+    "category": "deep_audit",
+    "set": "Deep-Audit Scenario Drills",
+    "domain": "Domain 4",
+    "type": "drill",
+    "question": "A vector search finds a highly relevant document, but the caller is not allowed to view it. What should happen?\r\n\r\nA. Return it because relevance is sufficient  \r\nB. Filter it out before returning context or answer content  \r\nC. Cache it for all users  \r\nD. Put it in the dead-letter queue",
+    "options": [],
+    "correctAnswer": "",
+    "explanation": "B. Retrieval relevance never overrides authorization.\r\n\r\n### Deep-audit scenario drills\r\n\r\nThese short drills target distinctions that are easy to miss when a study guide is learned only by vocabulary."
+  },
+  {
+    "id": "q-79",
+    "num": "79",
+    "title": "App Service startup",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A custom image is healthy locally but App Service shows a startup timeout. The process listens on `127.0.0.1:8000`. What is the most likely correction?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a Cosmos change feed"
+      },
+      {
+        "key": "B",
+        "text": "Bind the process to the expected external interface and configure the target port"
+      },
+      {
+        "key": "C",
+        "text": "Add a Service Bus topic"
+      },
+      {
+        "key": "D",
+        "text": "Change the vector distance metric"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A reachable listener and correct target port are required."
+  },
+  {
+    "id": "q-80",
+    "num": "80",
+    "title": "ACR build trigger",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A security team requires rebuilding images when a parent base image receives a patch. Which trigger should be configured?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Base-image update trigger"
+      },
+      {
+        "key": "B",
+        "text": "HTTP ingress rule"
+      },
+      {
+        "key": "C",
+        "text": "Cosmos lease"
+      },
+      {
+        "key": "D",
+        "text": "Redis expiration"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A base-image trigger rebuilds dependent images after a parent update."
+  },
+  {
+    "id": "q-81",
+    "num": "81",
+    "title": "Event worker at zero",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A Container Apps worker has no ingress and no replicas. It should process Service Bus messages. What is missing?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A custom event-driven scale rule or a minimum replica setting"
+      },
+      {
+        "key": "B",
+        "text": "A PostgreSQL cosine index"
+      },
+      {
+        "key": "C",
+        "text": "A Key Vault certificate"
+      },
+      {
+        "key": "D",
+        "text": "A browser cache"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A non-ingress event worker needs an event scale rule or a deliberate minimum replica count."
+  },
+  {
+    "id": "q-82",
+    "num": "82",
+    "title": "AKS unhealthy pod",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "An AKS deployment has desired replicas but none are ready. Which evidence should be collected first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Redis hit rate"
+      },
+      {
+        "key": "B",
+        "text": "Cosmos consistency"
+      },
+      {
+        "key": "C",
+        "text": "Event Grid subject filters"
+      },
+      {
+        "key": "D",
+        "text": "Pod status, events, current/previous logs, and probe failures"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Pod state, events, logs, and probes distinguish image, startup, and readiness failures."
+  },
+  {
+    "id": "q-83",
+    "num": "83",
+    "title": "Cosmos query cost",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A query scans every partition and returns thousands of fields although the API needs three fields and five results. Which change is best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add more retries"
+      },
+      {
+        "key": "B",
+        "text": "Supply the partition key, project only needed fields, and use `TOP 5`"
+      },
+      {
+        "key": "C",
+        "text": "Increase vector dimensions"
+      },
+      {
+        "key": "D",
+        "text": "Disable all authentication"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Partition targeting, projection, and bounded results reduce unnecessary RU and latency."
+  },
+  {
+    "id": "q-84",
+    "num": "84",
+    "title": "Cosmos approximate results",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A vector query returns slightly different ordering across replicas but remains within measured recall targets. Which explanation is most likely?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The application has no partition key"
+      },
+      {
+        "key": "B",
+        "text": "Key Vault rotated a secret"
+      },
+      {
+        "key": "C",
+        "text": "An approximate vector index can have non-deterministic ordering"
+      },
+      {
+        "key": "D",
+        "text": "Service Bus completed the message twice"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Approximate indexes favor scale and latency over perfectly stable ordering."
+  },
+  {
+    "id": "q-85",
+    "num": "85",
+    "title": "Change feed side effect",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A change feed handler creates a customer record in another system. Which protection is essential?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An idempotency key or deduplication record"
+      },
+      {
+        "key": "B",
+        "text": "Receive-and-delete mode"
+      },
+      {
+        "key": "C",
+        "text": "A larger Docker image"
+      },
+      {
+        "key": "D",
+        "text": "A feature flag only"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Change feed processing is at least once, so external effects must be duplicate-safe."
+  },
+  {
+    "id": "q-86",
+    "num": "86",
+    "title": "PostgreSQL vector query",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A PostgreSQL table stores `vector(1536)` values. A query uses a 3072-dimensional vector. What should happen?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The database silently converts it"
+      },
+      {
+        "key": "B",
+        "text": "The application truncates it"
+      },
+      {
+        "key": "C",
+        "text": "The query uses it only for metadata"
+      },
+      {
+        "key": "D",
+        "text": "Use a compatible embedding or re-embed/rebuild the vector data"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Vector dimension and embedding compatibility must be preserved."
+  },
+  {
+    "id": "q-87",
+    "num": "87",
+    "title": "Semantic cache boundary",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A cached answer contains data visible only to tenant A. A similar prompt arrives from tenant B. What prevents leakage?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A shorter TTL alone"
+      },
+      {
+        "key": "B",
+        "text": "Tenant-aware cache partitioning and authorization filters"
+      },
+      {
+        "key": "C",
+        "text": "A larger vector index"
+      },
+      {
+        "key": "D",
+        "text": "A public Event Grid topic"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Tenant and authorization boundaries must be part of cache lookup."
+  },
+  {
+    "id": "q-88",
+    "num": "88",
+    "title": "Service Bus fan-out",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "One published business event must be independently consumed by billing and audit. Which entity model is correct?",
+    "options": [
+      {
+        "key": "A",
+        "text": "One queue with one consumer"
+      },
+      {
+        "key": "B",
+        "text": "A topic with billing and audit subscriptions"
+      },
+      {
+        "key": "C",
+        "text": "One Key Vault secret"
+      },
+      {
+        "key": "D",
+        "text": "One App Configuration label"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Topic subscriptions provide independent fan-out."
+  },
+  {
+    "id": "q-89",
+    "num": "89",
+    "title": "Service Bus failure",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "A worker fails transiently while holding a peek lock. What is a reasonable response?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Abandon or allow lock expiry, retry with limits, and dead-letter after policy limits"
+      },
+      {
+        "key": "B",
+        "text": "Complete immediately"
+      },
+      {
+        "key": "C",
+        "text": "Delete the namespace"
+      },
+      {
+        "key": "D",
+        "text": "Disable idempotency"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Transient failure should retry safely; poison work eventually belongs in dead-letter handling."
+  },
+  {
+    "id": "q-90",
+    "num": "90",
+    "title": "Event Grid routing",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Only events whose subject begins with `/documents/` should reach a Function. Where should the primary reduction of unwanted traffic occur?",
+    "options": [
+      {
+        "key": "A",
+        "text": "In the database after processing"
+      },
+      {
+        "key": "B",
+        "text": "In the Dockerfile"
+      },
+      {
+        "key": "C",
+        "text": "In the Event Grid subscription filter"
+      },
+      {
+        "key": "D",
+        "text": "In the KQL query after the fact"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Filter at the subscription, then validate again in the handler."
+  },
+  {
+    "id": "q-91",
+    "num": "91",
+    "title": "Function design",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "An HTTP Function receives a request that starts a 30-minute indexing job. What should it return after durably accepting the job?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A synchronous model response after 30 minutes"
+      },
+      {
+        "key": "B",
+        "text": "An operation ID and a way to query status"
+      },
+      {
+        "key": "C",
+        "text": "The raw database password"
+      },
+      {
+        "key": "D",
+        "text": "A completed message before enqueueing"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Durable asynchronous work should return an operation identifier."
+  },
+  {
+    "id": "q-92",
+    "num": "92",
+    "title": "Key Vault forbidden",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A managed identity authenticates successfully but cannot read a secret. What is the likely missing item?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A vector index"
+      },
+      {
+        "key": "B",
+        "text": "An Event Grid custom schema"
+      },
+      {
+        "key": "C",
+        "text": "A Key Vault data-plane role or access-policy permission"
+      },
+      {
+        "key": "D",
+        "text": "An App Service health endpoint"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Authentication and data-plane authorization are separate."
+  },
+  {
+    "id": "q-93",
+    "num": "93",
+    "title": "Configuration management",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Operations must enable a feature for one environment without rebuilding containers. What should hold the flag?",
+    "options": [
+      {
+        "key": "A",
+        "text": "App Configuration"
+      },
+      {
+        "key": "B",
+        "text": "A Docker layer"
+      },
+      {
+        "key": "C",
+        "text": "A dead-letter message"
+      },
+      {
+        "key": "D",
+        "text": "A vector embedding"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "App Configuration is for non-secret settings and feature flags."
+  },
+  {
+    "id": "q-94",
+    "num": "94",
+    "title": "Trace bottleneck",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "API CPU is low but response time is high. Which evidence best identifies whether the vector store or model provider is slow?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Image tag only"
+      },
+      {
+        "key": "B",
+        "text": "A Service Bus queue name only"
+      },
+      {
+        "key": "C",
+        "text": "A Redis key count only"
+      },
+      {
+        "key": "D",
+        "text": "Dependency spans correlated to the request trace"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Dependency spans show where time is spent inside the distributed request."
+  },
+  {
+    "id": "q-95",
+    "num": "95",
+    "title": "KQL failure query",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which query shape finds failed requests in the last hour?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`requests | summarize count()` with no time or success filter"
+      },
+      {
+        "key": "B",
+        "text": "`requests | where timestamp > ago(1h) | where success == false`"
+      },
+      {
+        "key": "C",
+        "text": "`requests | project duration` only"
+      },
+      {
+        "key": "D",
+        "text": "`requests | top 1 by name` only"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The query needs both a time boundary and failure predicate."
+  },
+  {
+    "id": "q-96",
+    "num": "96",
+    "title": "Downstream throttling",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Workers are scaling out faster than a model provider can serve them. Which set of controls is best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Remove the queue and retries"
+      },
+      {
+        "key": "B",
+        "text": "Increase every timeout indefinitely"
+      },
+      {
+        "key": "C",
+        "text": "Bound replicas and concurrency, then use retry backoff and queue monitoring"
+      },
+      {
+        "key": "D",
+        "text": "Log every prompt in full"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Backpressure protects the throttled dependency and preserves work in the queue."
+  },
+  {
+    "id": "q-97",
+    "num": "97",
+    "title": "Durable command",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which service is the best first choice for a command that must be retried and dead-lettered?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Service Bus"
+      },
+      {
+        "key": "B",
+        "text": "Event Grid only"
+      },
+      {
+        "key": "C",
+        "text": "App Configuration"
+      },
+      {
+        "key": "D",
+        "text": "Application Insights"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Service Bus supplies durable message settlement and dead-letter semantics."
+  },
+  {
+    "id": "q-98",
+    "num": "98",
+    "title": "New revision not visible",
+    "category": "test_a",
+    "set": "Practice Test A",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A new Container Apps revision is healthy but no user receives it. What should be inspected?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The pgvector operator"
+      },
+      {
+        "key": "B",
+        "text": "The Key Vault certificate chain only"
+      },
+      {
+        "key": "C",
+        "text": "The Redis eviction policy only"
+      },
+      {
+        "key": "D",
+        "text": "Revision traffic allocation and any gateway or slot routing"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A healthy revision still needs traffic routing to receive requests."
+  },
+  {
+    "id": "q-99",
+    "num": "99",
+    "title": "Immutable deployment",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which image reference gives the strongest rollback and audit behavior?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Only the mutable `latest` tag"
+      },
+      {
+        "key": "B",
+        "text": "An untagged local image"
+      },
+      {
+        "key": "C",
+        "text": "An immutable release tag or image digest"
+      },
+      {
+        "key": "D",
+        "text": "A container name with no version"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A digest or immutable release tag makes the deployed image auditable and repeatable."
+  },
+  {
+    "id": "q-100",
+    "num": "100",
+    "title": "Registry identity",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A Container App can resolve the ACR hostname but receives an image authorization failure. Which permission is most relevant?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Registry pull permission for the runtime identity"
+      },
+      {
+        "key": "B",
+        "text": "Cosmos DB read permission"
+      },
+      {
+        "key": "C",
+        "text": "App Configuration write permission"
+      },
+      {
+        "key": "D",
+        "text": "Event Grid publisher permission"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The runtime must be authorized to pull from the private registry."
+  },
+  {
+    "id": "q-101",
+    "num": "101",
+    "title": "Container Apps rollback",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A new revision passes deployment but fails health checks for real traffic. What is the safest immediate action?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Delete every revision"
+      },
+      {
+        "key": "B",
+        "text": "Put the password in the image"
+      },
+      {
+        "key": "C",
+        "text": "Increase vector dimensions"
+      },
+      {
+        "key": "D",
+        "text": "Route traffic back to the known-good revision and investigate the new one"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Revisions provide a controlled rollback without mutating the old deployment."
+  },
+  {
+    "id": "q-102",
+    "num": "102",
+    "title": "KEDA scale rule",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which information is required for a custom queue scaler beyond min/max replicas?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A browser cookie"
+      },
+      {
+        "key": "B",
+        "text": "Scaler type, queue metadata, and authentication configuration"
+      },
+      {
+        "key": "C",
+        "text": "A PostgreSQL table name only"
+      },
+      {
+        "key": "D",
+        "text": "An Application Insights screenshot"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The scaler needs its type, source metadata, and a secure authentication path."
+  },
+  {
+    "id": "q-103",
+    "num": "103",
+    "title": "AKS service routing",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Pods have the label `app=worker`, but the Service selects `app=api`. What is the likely result?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The Service automatically changes its selector"
+      },
+      {
+        "key": "B",
+        "text": "The image is rebuilt"
+      },
+      {
+        "key": "C",
+        "text": "The Service has no matching endpoints for those Pods"
+      },
+      {
+        "key": "D",
+        "text": "Key Vault rotates a secret"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A selector mismatch produces no matching Service endpoints."
+  },
+  {
+    "id": "q-104",
+    "num": "104",
+    "title": "Cosmos access pattern",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "The application knows an item ID and partition key and needs one item. Which operation is most efficient in principle?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Point read"
+      },
+      {
+        "key": "B",
+        "text": "Cross-partition query of all items"
+      },
+      {
+        "key": "C",
+        "text": "Full change feed replay"
+      },
+      {
+        "key": "D",
+        "text": "Vector search without a vector"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "ID plus partition key supports a direct point read."
+  },
+  {
+    "id": "q-105",
+    "num": "105",
+    "title": "Cosmos vector security",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A vector query returns top results from all tenants because the similarity score is high. What must be added?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A longer cache TTL"
+      },
+      {
+        "key": "B",
+        "text": "A larger container image"
+      },
+      {
+        "key": "C",
+        "text": "A stronger Service Bus lock"
+      },
+      {
+        "key": "D",
+        "text": "Tenant and access-control predicates in retrieval"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Similarity does not enforce tenant authorization; filtering must happen in retrieval."
+  },
+  {
+    "id": "q-106",
+    "num": "106",
+    "title": "Cosmos consistency",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which statement is correct?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Consistency has no latency or availability tradeoff"
+      },
+      {
+        "key": "B",
+        "text": "Stronger read guarantees can affect latency and regional behavior"
+      },
+      {
+        "key": "C",
+        "text": "Redis TTL selects Cosmos consistency"
+      },
+      {
+        "key": "D",
+        "text": "Vector indexes remove all consistency choices"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Consistency is a freshness, latency, and regional behavior tradeoff."
+  },
+  {
+    "id": "q-107",
+    "num": "107",
+    "title": "pgvector cosine query",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which query ordering is associated with cosine distance in pgvector?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`ORDER BY embedding == $1`"
+      },
+      {
+        "key": "B",
+        "text": "`ORDER BY embedding <#> $1` for cosine"
+      },
+      {
+        "key": "C",
+        "text": "`ORDER BY embedding <=> $1`"
+      },
+      {
+        "key": "D",
+        "text": "`ORDER BY embedding TOP 10`"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "`<=>` is the pgvector cosine-distance operator."
+  },
+  {
+    "id": "q-108",
+    "num": "108",
+    "title": "Cache correctness",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A source record changes and the API must stop returning the old cached value immediately. What should be used?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Explicit invalidation or versioned keys"
+      },
+      {
+        "key": "B",
+        "text": "A longer TTL"
+      },
+      {
+        "key": "C",
+        "text": "A new Event Grid schema only"
+      },
+      {
+        "key": "D",
+        "text": "A larger vector dimension"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Invalidation or versioning is required for immediate source-change correctness."
+  },
+  {
+    "id": "q-109",
+    "num": "109",
+    "title": "Document ingestion",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A document upload should start asynchronous embedding work. Which event source is a natural fit for a blob-created notification?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Key Vault"
+      },
+      {
+        "key": "B",
+        "text": "App Configuration"
+      },
+      {
+        "key": "C",
+        "text": "PostgreSQL connection pool"
+      },
+      {
+        "key": "D",
+        "text": "Event Grid"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Event Grid can route blob-created events to an ingestion handler."
+  },
+  {
+    "id": "q-110",
+    "num": "110",
+    "title": "Stream versus command",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which pairing is correct?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Event Hubs for durable secret rotation; Key Vault for telemetry stream"
+      },
+      {
+        "key": "B",
+        "text": "Event Hubs for partitioned event streams; Service Bus for durable business commands"
+      },
+      {
+        "key": "C",
+        "text": "Redis for all durable commands; Event Grid for passwords"
+      },
+      {
+        "key": "D",
+        "text": "App Service for topic subscriptions"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Event Hubs is a partitioned stream; Service Bus supports durable commands and settlement."
+  },
+  {
+    "id": "q-111",
+    "num": "111",
+    "title": "Function model",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which statement about Azure Functions is correct?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A Function must have exactly one trigger and may have multiple bindings"
+      },
+      {
+        "key": "B",
+        "text": "A Function must have exactly one output binding"
+      },
+      {
+        "key": "C",
+        "text": "A binding always provides transaction semantics"
+      },
+      {
+        "key": "D",
+        "text": "An HTTP Function should block for every long-running job"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "One trigger starts the Function; bindings are optional inputs and outputs."
+  },
+  {
+    "id": "q-112",
+    "num": "112",
+    "title": "Event retry",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "An Event Grid handler returns a failure after applying its side effect. What must the design assume?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Event Grid will never retry"
+      },
+      {
+        "key": "B",
+        "text": "The event is automatically exactly once"
+      },
+      {
+        "key": "C",
+        "text": "The topic is deleted"
+      },
+      {
+        "key": "D",
+        "text": "The event may be delivered again, so the side effect must be idempotent"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A failed acknowledgment can lead to redelivery, so the effect must be duplicate-safe."
+  },
+  {
+    "id": "q-113",
+    "num": "113",
+    "title": "Dead-letter handling",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A message fails because its schema is permanently invalid. What is the correct operational result?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Retry forever at full speed"
+      },
+      {
+        "key": "B",
+        "text": "Complete it before validation"
+      },
+      {
+        "key": "C",
+        "text": "Hide it in an application log"
+      },
+      {
+        "key": "D",
+        "text": "Dead-letter it with enough diagnostic context for remediation"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Permanent invalid work belongs in a diagnostic dead-letter path."
+  },
+  {
+    "id": "q-114",
+    "num": "114",
+    "title": "Secret rotation",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "What should happen before revoking the old database credential?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Confirm consumers use the new secret version successfully"
+      },
+      {
+        "key": "B",
+        "text": "Delete Key Vault access for every identity"
+      },
+      {
+        "key": "C",
+        "text": "Print both credentials to telemetry"
+      },
+      {
+        "key": "D",
+        "text": "Rebuild history from the dead-letter queue"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Verify all consumers have moved successfully before revocation."
+  },
+  {
+    "id": "q-115",
+    "num": "115",
+    "title": "Managed identity role",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A Function has a system-assigned identity but cannot send to Service Bus. Which check is most relevant?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The vector index type"
+      },
+      {
+        "key": "B",
+        "text": "The KQL percentile syntax"
+      },
+      {
+        "key": "C",
+        "text": "The identity's Service Bus data-plane role and scope"
+      },
+      {
+        "key": "D",
+        "text": "The App Service target port"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Identity existence is not permission; verify the Service Bus role and scope."
+  },
+  {
+    "id": "q-116",
+    "num": "116",
+    "title": "Configuration boundary",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which value belongs in Key Vault rather than App Configuration?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A feature flag"
+      },
+      {
+        "key": "B",
+        "text": "A non-secret region label"
+      },
+      {
+        "key": "C",
+        "text": "A deployment ring name"
+      },
+      {
+        "key": "D",
+        "text": "A database password"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Passwords are secrets; settings and flags belong in App Configuration."
+  },
+  {
+    "id": "q-117",
+    "num": "117",
+    "title": "Telemetry privacy",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which logging design is safest for an AI production workload?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Log all prompts, documents, and tokens permanently"
+      },
+      {
+        "key": "B",
+        "text": "Disable all traces and logs"
+      },
+      {
+        "key": "C",
+        "text": "Store secrets in custom dimensions"
+      },
+      {
+        "key": "D",
+        "text": "Use correlation IDs, redaction, controlled retention, and least-privilege telemetry access"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Observability must preserve diagnostic value without exposing sensitive content."
+  },
+  {
+    "id": "q-118",
+    "num": "118",
+    "title": "KQL latency",
+    "category": "test_b",
+    "set": "Practice Test B",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which query operation calculates p95 duration by hour?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`project duration` only"
+      },
+      {
+        "key": "B",
+        "text": "`summarize percentile(duration, 95) by bin(timestamp, 1h)`"
+      },
+      {
+        "key": "C",
+        "text": "`where success == false` only"
+      },
+      {
+        "key": "D",
+        "text": "`top 1 by timestamp`"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "`percentile` calculates p95 and `bin` groups the result by hour."
+  },
+  {
+    "id": "sim-F01",
+    "num": "F01",
+    "title": "Immutable image deployment",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A release must be reproducible six months later even if the `latest` tag has moved. Which image reference is strongest?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The mutable `latest` tag only"
+      },
+      {
+        "key": "B",
+        "text": "A local image name without a registry"
+      },
+      {
+        "key": "C",
+        "text": "An immutable release tag or content digest"
+      },
+      {
+        "key": "D",
+        "text": "The Container Apps environment name"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A digest or immutable release tag makes a deployment repeatable and auditable."
+  },
+  {
+    "id": "sim-F02",
+    "num": "F02",
+    "title": "Source-triggered build",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "An image should be rebuilt after code is committed to a repository. Which ACR Task feature is intended for this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A source-code update trigger"
+      },
+      {
+        "key": "B",
+        "text": "A Redis expiration policy"
+      },
+      {
+        "key": "C",
+        "text": "A Service Bus lock"
+      },
+      {
+        "key": "D",
+        "text": "An AKS Service selector"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A source-code update trigger starts an ACR Task after a repository change."
+  },
+  {
+    "id": "sim-F03",
+    "num": "F03",
+    "title": "Build, test, publish",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A cloud build must run integration tests and publish the image only when tests succeed. Which option is best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A single mutable image tag"
+      },
+      {
+        "key": "B",
+        "text": "An App Service setting"
+      },
+      {
+        "key": "C",
+        "text": "A Container Apps ingress rule"
+      },
+      {
+        "key": "D",
+        "text": "An ACR multi-step task"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Multi-step tasks can build, test, and publish with dependencies."
+  },
+  {
+    "id": "sim-F04",
+    "num": "F04",
+    "title": "Private ACR pull",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A Container App identity can authenticate to Azure but cannot pull a private image. Which permission should be investigated first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Key Vault Certificates Officer"
+      },
+      {
+        "key": "B",
+        "text": "ACR pull permission on the registry"
+      },
+      {
+        "key": "C",
+        "text": "Event Grid EventSubscription Contributor"
+      },
+      {
+        "key": "D",
+        "text": "Cosmos DB data reader"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The runtime identity needs the registry data-plane pull permission."
+  },
+  {
+    "id": "sim-F05",
+    "num": "F05",
+    "title": "App Service readiness",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A custom image listens on port 5000 inside the container, but the hosting configuration expects port 8080. What is the direct correction?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Change the vector index"
+      },
+      {
+        "key": "B",
+        "text": "Add a topic subscription"
+      },
+      {
+        "key": "C",
+        "text": "Align the container listener and hosting target port"
+      },
+      {
+        "key": "D",
+        "text": "Increase the Redis TTL"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The process listener and hosting target port must agree."
+  },
+  {
+    "id": "sim-F06",
+    "num": "F06",
+    "title": "Container Apps revision",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which statement best describes a Container Apps revision?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An immutable application snapshot that can receive traffic"
+      },
+      {
+        "key": "B",
+        "text": "A mutable cache entry"
+      },
+      {
+        "key": "C",
+        "text": "A Cosmos partition range"
+      },
+      {
+        "key": "D",
+        "text": "A Service Bus lock token"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A revision is an immutable Container Apps application snapshot."
+  },
+  {
+    "id": "sim-F07",
+    "num": "F07",
+    "title": "Canary deployment",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A team wants to send a small percentage of traffic to a new Container Apps version while retaining the old version. Which capability is central?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A change feed lease"
+      },
+      {
+        "key": "B",
+        "text": "A Key Vault secret version"
+      },
+      {
+        "key": "C",
+        "text": "A PostgreSQL vector operator"
+      },
+      {
+        "key": "D",
+        "text": "Multiple revisions with traffic allocation"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Multiple revisions and traffic allocation support canary rollout and rollback."
+  },
+  {
+    "id": "sim-F08",
+    "num": "F08",
+    "title": "Event-driven worker",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A Container Apps worker has no HTTP ingress and must start when a Service Bus queue grows. Which configuration is required?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A larger Docker base image"
+      },
+      {
+        "key": "B",
+        "text": "A custom event-driven KEDA scale rule"
+      },
+      {
+        "key": "C",
+        "text": "A browser cookie"
+      },
+      {
+        "key": "D",
+        "text": "A static DNS record only"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A non-ingress worker needs an event-driven scale rule or deliberate minimum replicas."
+  },
+  {
+    "id": "sim-F09",
+    "num": "F09",
+    "title": "Scale-rule credentials",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which approach avoids embedding a Service Bus connection string in a Container Apps KEDA rule when the scaler supports it?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Store it in the Dockerfile"
+      },
+      {
+        "key": "B",
+        "text": "Put it in a public environment variable"
+      },
+      {
+        "key": "C",
+        "text": "Use managed identity authentication"
+      },
+      {
+        "key": "D",
+        "text": "Print it during startup"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Managed identity avoids placing a long-lived connection string in the application."
+  },
+  {
+    "id": "sim-F10",
+    "num": "F10",
+    "title": "Protecting a database",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A queue backlog causes workers to overload a database when replicas increase. Which control most directly limits the damage?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Set a maximum replica count and bounded worker concurrency"
+      },
+      {
+        "key": "B",
+        "text": "Remove the queue"
+      },
+      {
+        "key": "C",
+        "text": "Disable all application logs"
+      },
+      {
+        "key": "D",
+        "text": "Increase the embedding dimensions"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Maximum replicas and bounded concurrency protect a slow downstream database."
+  },
+  {
+    "id": "sim-F11",
+    "num": "F11",
+    "title": "AKS desired state",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which Kubernetes resource normally declares the desired number of replicated application Pods and manages rollout state?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Service"
+      },
+      {
+        "key": "B",
+        "text": "ConfigMap"
+      },
+      {
+        "key": "C",
+        "text": "Namespace"
+      },
+      {
+        "key": "D",
+        "text": "Deployment"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A Deployment declares and manages the desired replicated Pod state."
+  },
+  {
+    "id": "sim-F12",
+    "num": "F12",
+    "title": "AKS no endpoints",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Pods are ready but a Service has no endpoints. The Service selector is `app=api`, while the Pods are labeled `app=worker`. What is the likely cause?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The Key Vault secret expired"
+      },
+      {
+        "key": "B",
+        "text": "The selector does not match the Pod labels"
+      },
+      {
+        "key": "C",
+        "text": "The vector search is approximate"
+      },
+      {
+        "key": "D",
+        "text": "The Function has two triggers"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A selector that does not match Pod labels creates no usable Service endpoints."
+  },
+  {
+    "id": "sim-F13",
+    "num": "F13",
+    "title": "AKS image failure",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Pods remain in an image-pull failure state. Which evidence is most useful first?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Redis cache hit rate"
+      },
+      {
+        "key": "B",
+        "text": "KQL p95 syntax"
+      },
+      {
+        "key": "C",
+        "text": "Pod events, image reference, and registry authorization"
+      },
+      {
+        "key": "D",
+        "text": "Event Grid subject filters"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Events, image references, and registry authorization expose image-pull causes."
+  },
+  {
+    "id": "sim-F14",
+    "num": "F14",
+    "title": "Runtime secrets",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "Which deployment design keeps database credentials out of a container image?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Retrieve them at runtime through managed identity and Key Vault"
+      },
+      {
+        "key": "B",
+        "text": "Add them to a Docker `ENV` instruction"
+      },
+      {
+        "key": "C",
+        "text": "Put them in the image label"
+      },
+      {
+        "key": "D",
+        "text": "Send them through an Event Grid event"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Runtime retrieval through identity and Key Vault keeps credentials out of the image."
+  },
+  {
+    "id": "sim-F15",
+    "num": "F15",
+    "title": "Platform choice",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 1",
+    "type": "mcq",
+    "question": "A team needs custom Kubernetes controllers, manifest-driven orchestration, and cluster-level networking control. Which platform is the strongest candidate?",
+    "options": [
+      {
+        "key": "A",
+        "text": "App Service"
+      },
+      {
+        "key": "B",
+        "text": "Container Apps only"
+      },
+      {
+        "key": "C",
+        "text": "Azure Managed Redis"
+      },
+      {
+        "key": "D",
+        "text": "AKS"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "AKS provides the full Kubernetes control surface required by the scenario."
+  },
+  {
+    "id": "sim-F16",
+    "num": "F16",
+    "title": "Cosmos direct access",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "The application knows an item's ID and partition-key value. Which operation is generally the most efficient?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A full cross-partition query"
+      },
+      {
+        "key": "B",
+        "text": "A point read"
+      },
+      {
+        "key": "C",
+        "text": "A vector search without a query vector"
+      },
+      {
+        "key": "D",
+        "text": "A complete change-feed replay"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "ID plus partition key supports a direct Cosmos point read."
+  },
+  {
+    "id": "sim-F17",
+    "num": "F17",
+    "title": "Cosmos partition design",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which partition-key choice is generally safer for a high-volume workload?",
+    "options": [
+      {
+        "key": "A",
+        "text": "One constant for every item"
+      },
+      {
+        "key": "B",
+        "text": "A field that is absent on most writes"
+      },
+      {
+        "key": "C",
+        "text": "A sufficiently high-cardinality value with distributed access"
+      },
+      {
+        "key": "D",
+        "text": "A value chosen only because it is short"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Cardinality and distributed access reduce hot-partition risk."
+  },
+  {
+    "id": "sim-F18",
+    "num": "F18",
+    "title": "Cosmos query cost",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A query needs five authorized results and three fields. Which change most directly controls cost and latency?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Supply the partition key, project required fields, and use `TOP 5`"
+      },
+      {
+        "key": "B",
+        "text": "Return every field and filter in application memory"
+      },
+      {
+        "key": "C",
+        "text": "Remove all indexes"
+      },
+      {
+        "key": "D",
+        "text": "Increase vector dimensions"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Partition targeting, projection, and a bounded result set reduce query work."
+  },
+  {
+    "id": "sim-F19",
+    "num": "F19",
+    "title": "Cosmos consistency",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "An application requires fresher reads across replicas and accepts the associated latency and availability tradeoff. What should the design do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Always use eventual consistency"
+      },
+      {
+        "key": "B",
+        "text": "Store all reads in Redis"
+      },
+      {
+        "key": "C",
+        "text": "Disable replication"
+      },
+      {
+        "key": "D",
+        "text": "Select a stronger consistency guarantee after evaluating regional effects"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Stronger consistency is selected when its freshness and regional tradeoffs are acceptable."
+  },
+  {
+    "id": "sim-F20",
+    "num": "F20",
+    "title": "Embedding compatibility",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Stored vectors use one embedding model and dimension, while a new query path uses a different dimension. What is the correct response?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Mix both vectors in one index"
+      },
+      {
+        "key": "B",
+        "text": "Use a compatible model or re-embed and rebuild the vector configuration"
+      },
+      {
+        "key": "C",
+        "text": "Truncate values silently"
+      },
+      {
+        "key": "D",
+        "text": "Replace the vector store with Service Bus"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Stored and query embeddings must be compatible or the data must be re-embedded."
+  },
+  {
+    "id": "sim-F21",
+    "num": "F21",
+    "title": "Vector policy",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which information belongs in a Cosmos DB vector embedding policy?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Only the tenant name"
+      },
+      {
+        "key": "B",
+        "text": "Only the HTTP route"
+      },
+      {
+        "key": "C",
+        "text": "Vector path, data type, dimensions, and distance function"
+      },
+      {
+        "key": "D",
+        "text": "The Key Vault secret value"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Vector path, type, dimensions, and distance define the vector policy."
+  },
+  {
+    "id": "sim-F22",
+    "num": "F22",
+    "title": "Exact search",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which workload most strongly favors a flat or exact vector search?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A small filtered candidate set where maximum recall matters"
+      },
+      {
+        "key": "B",
+        "text": "Billions of vectors where approximate recall is acceptable"
+      },
+      {
+        "key": "C",
+        "text": "A queue with poison messages"
+      },
+      {
+        "key": "D",
+        "text": "A feature-flag store"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Exact search fits a small filtered set when recall is the priority."
+  },
+  {
+    "id": "sim-F23",
+    "num": "F23",
+    "title": "Approximate search",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A vector corpus has millions of items and requires low latency with a measured recall tradeoff. Which approach fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Scan every item for every query"
+      },
+      {
+        "key": "B",
+        "text": "Store vectors only in Key Vault"
+      },
+      {
+        "key": "C",
+        "text": "Use receive-and-delete messaging"
+      },
+      {
+        "key": "D",
+        "text": "Use an approximate nearest-neighbor index such as DiskANN where supported"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "ANN indexes such as DiskANN support large-scale low-latency retrieval with a recall tradeoff."
+  },
+  {
+    "id": "sim-F24",
+    "num": "F24",
+    "title": "Bounded retrieval",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Why should a vector query normally limit the number of returned results?",
+    "options": [
+      {
+        "key": "A",
+        "text": "To make secrets expire"
+      },
+      {
+        "key": "B",
+        "text": "To control latency, RU/compute cost, and model context size"
+      },
+      {
+        "key": "C",
+        "text": "To disable authorization"
+      },
+      {
+        "key": "D",
+        "text": "To make every result exact"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A limit controls latency, data cost, and downstream model context."
+  },
+  {
+    "id": "sim-F25",
+    "num": "F25",
+    "title": "Change-feed processor",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which set contains the main components of a Cosmos DB change-feed processor?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Monitored container, lease container, compute instances, and delegate"
+      },
+      {
+        "key": "B",
+        "text": "Topic, subscription, Function, and certificate"
+      },
+      {
+        "key": "C",
+        "text": "Registry, revision, ingress, and replica"
+      },
+      {
+        "key": "D",
+        "text": "Cache key, TTL, model, and prompt"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The processor uses the monitored container, lease container, compute, and delegate."
+  },
+  {
+    "id": "sim-F26",
+    "num": "F26",
+    "title": "Duplicate side effect",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A change-feed worker can reprocess a batch after a crash. What should protect an external write?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An idempotency key or deduplication record"
+      },
+      {
+        "key": "B",
+        "text": "A mutable `latest` image tag"
+      },
+      {
+        "key": "C",
+        "text": "An unbounded retry loop"
+      },
+      {
+        "key": "D",
+        "text": "A stronger Redis eviction policy"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "At-least-once processing requires duplicate-safe external effects."
+  },
+  {
+    "id": "sim-F27",
+    "num": "F27",
+    "title": "PostgreSQL vector extension",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which SQL statement enables pgvector in a PostgreSQL database?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`CREATE EXTENSION embeddings;`"
+      },
+      {
+        "key": "B",
+        "text": "`CREATE VECTOR DATABASE;`"
+      },
+      {
+        "key": "C",
+        "text": "`ENABLE PGVECTOR;`"
+      },
+      {
+        "key": "D",
+        "text": "`CREATE EXTENSION vector;`"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "pgvector is enabled with the PostgreSQL extension named `vector`."
+  },
+  {
+    "id": "sim-F28",
+    "num": "F28",
+    "title": "PostgreSQL cosine distance",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Which pgvector operator represents cosine distance?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`<->`"
+      },
+      {
+        "key": "B",
+        "text": "`<=>`"
+      },
+      {
+        "key": "C",
+        "text": "`<#>`"
+      },
+      {
+        "key": "D",
+        "text": "`LIKE`"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "`<=>` represents cosine distance in pgvector."
+  },
+  {
+    "id": "sim-F29",
+    "num": "F29",
+    "title": "PostgreSQL RAG isolation",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "A PostgreSQL vector query must restrict results to a tenant and rank by similarity. What belongs in the query design?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Only a model temperature"
+      },
+      {
+        "key": "B",
+        "text": "Only a Redis TTL"
+      },
+      {
+        "key": "C",
+        "text": "Tenant/access predicates, vector ordering, and a bounded limit"
+      },
+      {
+        "key": "D",
+        "text": "A Service Bus lock renewal"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Tenant filtering, vector ranking, and a bounded result set must be designed together."
+  },
+  {
+    "id": "sim-F30",
+    "num": "F30",
+    "title": "PostgreSQL connections",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "An API opens a new database connection for every request and exhausts the server. What is the best correction?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Reuse a bounded connection pool and tune concurrency"
+      },
+      {
+        "key": "B",
+        "text": "Remove all connection timeouts"
+      },
+      {
+        "key": "C",
+        "text": "Put a password in the image"
+      },
+      {
+        "key": "D",
+        "text": "Increase the vector dimension"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Reusing a bounded pool prevents connection storms and server exhaustion."
+  },
+  {
+    "id": "sim-F31",
+    "num": "F31",
+    "title": "Redis expiration",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "What does a Redis TTL provide by itself?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Immediate invalidation on every source update"
+      },
+      {
+        "key": "B",
+        "text": "Exactly-once processing"
+      },
+      {
+        "key": "C",
+        "text": "Durable relational transactions"
+      },
+      {
+        "key": "D",
+        "text": "Expiration after a configured lifetime, not immediate correctness"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "TTL limits age but does not immediately reflect a source update."
+  },
+  {
+    "id": "sim-F32",
+    "num": "F32",
+    "title": "Semantic cache safety",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "Two users submit similar prompts but have different permissions. What is required before returning a cached response?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A larger cache value"
+      },
+      {
+        "key": "B",
+        "text": "Tenant/user authorization partitioning and model/prompt version checks"
+      },
+      {
+        "key": "C",
+        "text": "A public cache endpoint"
+      },
+      {
+        "key": "D",
+        "text": "A longer TTL"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Cache lookup must respect authorization and model/prompt version boundaries."
+  },
+  {
+    "id": "sim-F33",
+    "num": "F33",
+    "title": "Redis vector provisioning",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 2",
+    "type": "mcq",
+    "question": "What must be planned before creating a Managed Redis instance for RediSearch vector indexing?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Only the application URL"
+      },
+      {
+        "key": "B",
+        "text": "A Function trigger name"
+      },
+      {
+        "key": "C",
+        "text": "Required module, supported tier, clustering/eviction settings, and memory for index overhead"
+      },
+      {
+        "key": "D",
+        "text": "A Service Bus dead-letter reason"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Redis vector workloads require compatible module, tier, policy, and memory planning."
+  },
+  {
+    "id": "sim-F34",
+    "num": "F34",
+    "title": "Service Bus queue",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which entity best represents one durable task consumed by one competing worker?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Queue"
+      },
+      {
+        "key": "B",
+        "text": "Topic with one subscription per message"
+      },
+      {
+        "key": "C",
+        "text": "App Configuration label"
+      },
+      {
+        "key": "D",
+        "text": "Key Vault secret"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A queue supports one durable task processed by competing consumers."
+  },
+  {
+    "id": "sim-F35",
+    "num": "F35",
+    "title": "Service Bus fan-out",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Billing and audit each need an independent copy of every published business message. Which model fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "One queue with receive-and-delete"
+      },
+      {
+        "key": "B",
+        "text": "One Redis key"
+      },
+      {
+        "key": "C",
+        "text": "Topic with separate subscriptions"
+      },
+      {
+        "key": "D",
+        "text": "One Function output binding only"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Topic subscriptions provide independent copies for fan-out consumers."
+  },
+  {
+    "id": "sim-F36",
+    "num": "F36",
+    "title": "Receive-and-delete",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "What is the main risk of Service Bus receive-and-delete mode?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The message can be lost if the consumer fails after receipt"
+      },
+      {
+        "key": "B",
+        "text": "The queue cannot store messages"
+      },
+      {
+        "key": "C",
+        "text": "The topic cannot have filters"
+      },
+      {
+        "key": "D",
+        "text": "The message is always delivered twice"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Receive-and-delete can lose a message after receipt and before business processing completes."
+  },
+  {
+    "id": "sim-F37",
+    "num": "F37",
+    "title": "Peek-lock processing",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "A consumer fails after receiving a peek-locked message but before completing it. What should be expected?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The message is permanently deleted"
+      },
+      {
+        "key": "B",
+        "text": "The vector index is rebuilt"
+      },
+      {
+        "key": "C",
+        "text": "The Function loses its trigger"
+      },
+      {
+        "key": "D",
+        "text": "The message may become available again after lock expiry"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "An incomplete peek-locked message can be redelivered after the lock expires."
+  },
+  {
+    "id": "sim-F38",
+    "num": "F38",
+    "title": "Message completion",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "When should a worker complete a successfully peek-locked message?",
+    "options": [
+      {
+        "key": "A",
+        "text": "After the durable business effect succeeds"
+      },
+      {
+        "key": "B",
+        "text": "Before validation"
+      },
+      {
+        "key": "C",
+        "text": "Before calling the database"
+      },
+      {
+        "key": "D",
+        "text": "When the worker process starts"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Complete only after the durable business effect succeeds."
+  },
+  {
+    "id": "sim-F39",
+    "num": "F39",
+    "title": "Poison message",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "A message repeatedly fails due to a permanent schema violation. What should happen?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Retry forever"
+      },
+      {
+        "key": "B",
+        "text": "Complete it silently"
+      },
+      {
+        "key": "C",
+        "text": "Dead-letter it with diagnostic information"
+      },
+      {
+        "key": "D",
+        "text": "Put it in App Configuration"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Permanent invalid messages should be isolated in a diagnostic dead-letter path."
+  },
+  {
+    "id": "sim-F40",
+    "num": "F40",
+    "title": "Custom events",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "An application wants to publish its own document-created events to an event endpoint. Which Event Grid resource is a natural fit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Custom topic"
+      },
+      {
+        "key": "B",
+        "text": "Key Vault"
+      },
+      {
+        "key": "C",
+        "text": "Cosmos lease container"
+      },
+      {
+        "key": "D",
+        "text": "Redis vector index"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A custom topic is an application-owned Event Grid publishing endpoint."
+  },
+  {
+    "id": "sim-F41",
+    "num": "F41",
+    "title": "Event filtering",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Where should a subscription filter by event type and subject prefix be configured?",
+    "options": [
+      {
+        "key": "A",
+        "text": "In the image build"
+      },
+      {
+        "key": "B",
+        "text": "In PostgreSQL"
+      },
+      {
+        "key": "C",
+        "text": "In KQL after delivery"
+      },
+      {
+        "key": "D",
+        "text": "In the Event Grid event subscription"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Event type and subject filters belong on the event subscription."
+  },
+  {
+    "id": "sim-F42",
+    "num": "F42",
+    "title": "Event retry safety",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "An Event Grid handler applies a side effect and then fails to acknowledge delivery. What must the handler support?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Duplicate-safe idempotent processing"
+      },
+      {
+        "key": "B",
+        "text": "A new vector dimension"
+      },
+      {
+        "key": "C",
+        "text": "A permanent connection failure"
+      },
+      {
+        "key": "D",
+        "text": "An unbounded cache"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Event retry can duplicate delivery, so the handler must be idempotent."
+  },
+  {
+    "id": "sim-F43",
+    "num": "F43",
+    "title": "Function trigger count",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "How many triggers define one Azure Function invocation?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Exactly one"
+      },
+      {
+        "key": "B",
+        "text": "One for each output binding"
+      },
+      {
+        "key": "C",
+        "text": "Any number with no limit"
+      },
+      {
+        "key": "D",
+        "text": "One per environment variable"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "One Function invocation definition has exactly one trigger."
+  },
+  {
+    "id": "sim-F44",
+    "num": "F44",
+    "title": "Binding control",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "A binding cannot express a required transaction and custom retry policy. What is the best implementation choice?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Put the transaction in a Docker label"
+      },
+      {
+        "key": "B",
+        "text": "Use the service SDK directly"
+      },
+      {
+        "key": "C",
+        "text": "Remove all retries"
+      },
+      {
+        "key": "D",
+        "text": "Store the operation in a log only"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Direct SDK use is appropriate when bindings lack required transaction or retry control."
+  },
+  {
+    "id": "sim-F45",
+    "num": "F45",
+    "title": "Long-running API",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "An HTTP-triggered Function starts a 30-minute indexing operation. What should the API do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Keep the request open for 30 minutes"
+      },
+      {
+        "key": "B",
+        "text": "Return success before accepting work"
+      },
+      {
+        "key": "C",
+        "text": "Store the request in a browser cookie"
+      },
+      {
+        "key": "D",
+        "text": "Enqueue durable work and return an operation ID"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Durable asynchronous work should return an operation identifier."
+  },
+  {
+    "id": "sim-F46",
+    "num": "F46",
+    "title": "Event stream choice",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which workload most strongly favors Event Hubs rather than Service Bus?",
+    "options": [
+      {
+        "key": "A",
+        "text": "High-throughput partitioned telemetry with checkpointed consumer groups"
+      },
+      {
+        "key": "B",
+        "text": "A poison business command requiring dead-lettering"
+      },
+      {
+        "key": "C",
+        "text": "A secret rotation"
+      },
+      {
+        "key": "D",
+        "text": "A feature flag"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Event Hubs is designed for partitioned high-throughput streams and checkpoints."
+  },
+  {
+    "id": "sim-F47",
+    "num": "F47",
+    "title": "Rich messaging semantics",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 3",
+    "type": "mcq",
+    "question": "Which requirement most clearly favors Service Bus over Queue Storage?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A simple local test queue"
+      },
+      {
+        "key": "B",
+        "text": "A single short-lived task with no retry policy"
+      },
+      {
+        "key": "C",
+        "text": "Topics, subscriptions, locks, settlement, and dead-letter handling"
+      },
+      {
+        "key": "D",
+        "text": "A vector search"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Service Bus supplies richer locks, settlement, topics, subscriptions, and dead-lettering."
+  },
+  {
+    "id": "sim-F48",
+    "num": "F48",
+    "title": "Managed identity",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "What problem does a managed identity primarily solve?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It creates vector embeddings"
+      },
+      {
+        "key": "B",
+        "text": "It avoids distributing a client secret to the workload"
+      },
+      {
+        "key": "C",
+        "text": "It guarantees database authorization without roles"
+      },
+      {
+        "key": "D",
+        "text": "It replaces all monitoring"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Managed identity avoids distributing a client secret to the workload."
+  },
+  {
+    "id": "sim-F49",
+    "num": "F49",
+    "title": "Least privilege",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which role assignment follows least privilege?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Owner at subscription scope for every workload"
+      },
+      {
+        "key": "B",
+        "text": "A shared administrator password"
+      },
+      {
+        "key": "C",
+        "text": "Contributor at tenant scope"
+      },
+      {
+        "key": "D",
+        "text": "The narrowest required data-plane role at the smallest useful scope"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Least privilege uses the smallest role and scope that satisfies the operation."
+  },
+  {
+    "id": "sim-F50",
+    "num": "F50",
+    "title": "Key Vault purpose",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which value belongs in Key Vault?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A database password or API key"
+      },
+      {
+        "key": "B",
+        "text": "A non-secret feature flag"
+      },
+      {
+        "key": "C",
+        "text": "A deployment ring label"
+      },
+      {
+        "key": "D",
+        "text": "A KQL query"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Passwords and API keys are Key Vault secrets."
+  },
+  {
+    "id": "sim-F51",
+    "num": "F51",
+    "title": "Secret rotation",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which sequence best reduces outage risk during credential rotation?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Revoke the old credential first"
+      },
+      {
+        "key": "B",
+        "text": "Log both credentials for debugging"
+      },
+      {
+        "key": "C",
+        "text": "Create the new version, grant access, switch and verify consumers, then revoke the old value"
+      },
+      {
+        "key": "D",
+        "text": "Put the new value in the Dockerfile"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Staged rotation verifies the new credential before revoking the old one."
+  },
+  {
+    "id": "sim-F52",
+    "num": "F52",
+    "title": "App Configuration",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which value is the best fit for App Configuration?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A private key"
+      },
+      {
+        "key": "B",
+        "text": "A feature flag or environment-specific non-secret setting"
+      },
+      {
+        "key": "C",
+        "text": "A database password"
+      },
+      {
+        "key": "D",
+        "text": "A bearer token"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "App Configuration stores non-secret settings and feature flags."
+  },
+  {
+    "id": "sim-F53",
+    "num": "F53",
+    "title": "OpenTelemetry spans",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which telemetry best shows the time spent in each downstream dependency for one request?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A container tag"
+      },
+      {
+        "key": "B",
+        "text": "A single memory gauge"
+      },
+      {
+        "key": "C",
+        "text": "A Redis TTL"
+      },
+      {
+        "key": "D",
+        "text": "A distributed trace with correlated dependency spans"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Correlated dependency spans show downstream timing inside one request trace."
+  },
+  {
+    "id": "sim-F54",
+    "num": "F54",
+    "title": "Telemetry privacy",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "What is the safest default for production prompt logging?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Redact or avoid sensitive content and keep correlation metadata"
+      },
+      {
+        "key": "B",
+        "text": "Log every prompt and document permanently"
+      },
+      {
+        "key": "C",
+        "text": "Put secrets in custom dimensions"
+      },
+      {
+        "key": "D",
+        "text": "Disable all monitoring"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Redaction and correlation metadata preserve diagnostics without exposing content."
+  },
+  {
+    "id": "sim-F55",
+    "num": "F55",
+    "title": "KQL time filter",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which KQL function commonly creates a relative time boundary such as the last hour?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`bin()`"
+      },
+      {
+        "key": "B",
+        "text": "`project()`"
+      },
+      {
+        "key": "C",
+        "text": "`ago()`"
+      },
+      {
+        "key": "D",
+        "text": "`join()`"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "`ago()` creates a relative time boundary."
+  },
+  {
+    "id": "sim-F56",
+    "num": "F56",
+    "title": "KQL p95 by hour",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which combination calculates p95 duration grouped into hourly buckets?",
+    "options": [
+      {
+        "key": "A",
+        "text": "`top` and `project` only"
+      },
+      {
+        "key": "B",
+        "text": "`percentile(duration, 95)` and `bin(timestamp, 1h)`"
+      },
+      {
+        "key": "C",
+        "text": "`extend` with no aggregation"
+      },
+      {
+        "key": "D",
+        "text": "`where success == false` only"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "`percentile` computes p95 and `bin` groups timestamps by hour."
+  },
+  {
+    "id": "sim-F57",
+    "num": "F57",
+    "title": "HTTP 500 after deployment",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "What is the strongest first diagnostic sequence?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Change five unrelated settings immediately"
+      },
+      {
+        "key": "B",
+        "text": "Delete all revisions"
+      },
+      {
+        "key": "C",
+        "text": "Increase every timeout"
+      },
+      {
+        "key": "D",
+        "text": "Capture time/correlation, confirm active revision, inspect exceptions and dependencies, then compare identity/configuration"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Correlation, revision, exceptions, dependencies, identity, and configuration narrow the root cause."
+  },
+  {
+    "id": "sim-F58",
+    "num": "F58",
+    "title": "Healthy revision, old behavior",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "A new Container Apps revision is healthy but users see the old behavior. What should be inspected?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Revision traffic allocation and gateway or slot routing"
+      },
+      {
+        "key": "B",
+        "text": "The pgvector cosine operator"
+      },
+      {
+        "key": "C",
+        "text": "The Key Vault certificate tier"
+      },
+      {
+        "key": "D",
+        "text": "The Redis vector dimension only"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A healthy revision still needs traffic routing to receive user requests."
+  },
+  {
+    "id": "sim-F59",
+    "num": "F59",
+    "title": "Backpressure",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "A model provider is throttling while the worker queue grows. Which set of controls is safest?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Remove the queue and call synchronously"
+      },
+      {
+        "key": "B",
+        "text": "Allow unlimited replicas"
+      },
+      {
+        "key": "C",
+        "text": "Cap replicas, bound concurrency, use backoff, and monitor queue age"
+      },
+      {
+        "key": "D",
+        "text": "Disable all retries and telemetry"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Backpressure limits work sent to a throttled dependency and preserves queued work."
+  },
+  {
+    "id": "sim-F60",
+    "num": "F60",
+    "title": "Version-sensitive facts",
+    "category": "simulation",
+    "set": "Full 120-minute simulation",
+    "domain": "Domain 4",
+    "type": "mcq",
+    "question": "Which item should be treated as version-sensitive before booking the exam?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The principle that duplicate effects need idempotency"
+      },
+      {
+        "key": "B",
+        "text": "Practice-assessment availability, service limits, runtime models, and measured weights"
+      },
+      {
+        "key": "C",
+        "text": "The distinction between a secret and a feature flag"
+      },
+      {
+        "key": "D",
+        "text": "The purpose of a queue"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Exam status, limits, runtime support, and weights can change; principles are more durable."
+  }
+]

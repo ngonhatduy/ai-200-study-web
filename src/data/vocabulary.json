@@ -1,0 +1,157 @@
+[
+  {
+    "term": "Image",
+    "definition": "An immutable package containing application code, runtime, libraries, and configuration defaults.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Container",
+    "definition": "A running instance of an image.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Registry",
+    "definition": "A service that stores and distributes images. Azure Container Registry is the Azure-native option.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Revision",
+    "definition": "An immutable version of a Container App configuration and image.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Replica",
+    "definition": "A running instance of a revision.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Ingress",
+    "definition": "The network path that accepts traffic into a service.",
+    "category": "Container terms"
+  },
+  {
+    "term": "KEDA",
+    "definition": "Kubernetes Event-driven Autoscaling. Container Apps uses KEDA-compatible rules for event-based scaling.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Manifest",
+    "definition": "Declarative Kubernetes configuration, often YAML, describing resources such as Deployments and Services.",
+    "category": "Container terms"
+  },
+  {
+    "term": "Embedding",
+    "definition": "A numeric representation of content in a high-dimensional space.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Vector",
+    "definition": "The numeric array containing an embedding.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Vector search",
+    "definition": "Ranking stored vectors by distance or similarity to a query vector.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Exact search",
+    "definition": "Compares the query with every candidate, favoring recall at higher compute cost.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Approximate nearest neighbor search",
+    "definition": "Uses an index to reduce latency and cost while accepting some recall tradeoff.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Metadata filter",
+    "definition": "A normal field predicate that restricts candidates by tenant, category, authorization, date, or other attributes.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "RAG",
+    "definition": "Retrieval-Augmented Generation. Retrieve relevant content first, then provide it to a model as grounding context.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Semantic cache",
+    "definition": "A cache that reuses a response for a sufficiently similar prompt, rather than requiring exact string equality.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "RU",
+    "definition": "Request Unit in Cosmos DB, a normalized measure of request cost.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Partition key",
+    "definition": "The logical distribution key used to spread Cosmos DB data and workload.",
+    "category": "Data and AI terms"
+  },
+  {
+    "term": "Queue",
+    "definition": "Point-to-point messaging where one competing consumer normally processes a message.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Topic",
+    "definition": "A publish endpoint in Service Bus.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Subscription",
+    "definition": "A durable, independently consumable view of a Service Bus topic.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Event",
+    "definition": "A notification that something happened.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Command",
+    "definition": "A request for a consumer to perform work.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Dead-letter queue",
+    "definition": "A holding area for messages that cannot be delivered or processed successfully.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Trigger",
+    "definition": "The event that starts an Azure Function.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Binding",
+    "definition": "Declarative input or output integration between a Function and another service.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Secret",
+    "definition": "Sensitive value such as a password, key, token, or connection string.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Configuration",
+    "definition": "Non-secret application settings, feature flags, or environment-specific values.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Trace",
+    "definition": "The end-to-end record of a request across services.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "Span",
+    "definition": "One timed operation inside a trace.",
+    "category": "Messaging and operations terms"
+  },
+  {
+    "term": "KQL",
+    "definition": "Kusto Query Language, used to query Azure Monitor and Log Analytics data.",
+    "category": "Messaging and operations terms"
+  }
+]

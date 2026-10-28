@@ -1,0 +1,169 @@
+[
+  {
+    "title": "App Service, Container Apps, and AKS",
+    "headers": [
+      "Question",
+      "App Service",
+      "Container Apps",
+      "AKS"
+    ],
+    "rows": [
+      [
+        "Need a simple managed web host?",
+        "Strong",
+        "Strong",
+        "Overkill"
+      ],
+      [
+        "Need revisions and traffic splitting?",
+        "Slots or deployment features",
+        "Native revision model",
+        "Custom implementation"
+      ],
+      [
+        "Need queue-driven scale to zero?",
+        "Limited or indirect",
+        "Strong with KEDA",
+        "Strong with Kubernetes/KEDA"
+      ],
+      [
+        "Need full Kubernetes APIs and controllers?",
+        "No",
+        "No",
+        "Strong"
+      ],
+      [
+        "Lowest operational burden?",
+        "Strong",
+        "Strong",
+        "Weakest of the three"
+      ],
+      [
+        "Fine-grained cluster networking/control?",
+        "Limited",
+        "Managed boundary",
+        "Strong"
+      ]
+    ]
+  },
+  {
+    "title": "Cosmos DB, PostgreSQL, and Redis",
+    "headers": [
+      "Requirement",
+      "Choice"
+    ],
+    "rows": [
+      [
+        "Flexible NoSQL operational data and vector retrieval",
+        "Cosmos DB for NoSQL"
+      ],
+      [
+        "SQL joins, transactions, and relational vector data",
+        "PostgreSQL with pgvector"
+      ],
+      [
+        "Short-lived, low-latency cache or semantic cache",
+        "Azure Managed Redis"
+      ],
+      [
+        "Durable source of truth",
+        "Cosmos DB or PostgreSQL, depending on model"
+      ],
+      [
+        "Fast session or conversation memory",
+        "Azure Managed Redis, with persistence requirements considered"
+      ],
+      [
+        "Change-driven NoSQL processing",
+        "Cosmos DB change feed"
+      ]
+    ]
+  },
+  {
+    "title": "Service Bus and Event Grid",
+    "headers": [
+      "Requirement",
+      "Choice"
+    ],
+    "rows": [
+      [
+        "A worker must complete a task",
+        "Service Bus queue"
+      ],
+      [
+        "Multiple consumers need independent copies",
+        "Service Bus topic and subscriptions"
+      ],
+      [
+        "Notify consumers that an event occurred",
+        "Event Grid"
+      ],
+      [
+        "Need dead-letter and settlement semantics",
+        "Service Bus"
+      ],
+      [
+        "Need subject or event-type filtering",
+        "Event Grid or Service Bus subscription filters, depending on delivery model"
+      ],
+      [
+        "Need to replay business work safely",
+        "Service Bus with idempotent processing"
+      ]
+    ]
+  },
+  {
+    "title": "Key Vault and App Configuration",
+    "headers": [
+      "Data",
+      "Service"
+    ],
+    "rows": [
+      [
+        "Password, token, API key, certificate, encryption key",
+        "Key Vault"
+      ],
+      [
+        "Non-secret setting",
+        "App Configuration"
+      ],
+      [
+        "Feature flag",
+        "App Configuration"
+      ],
+      [
+        "Secret rotation",
+        "Key Vault"
+      ],
+      [
+        "Environment labels and dynamic settings",
+        "App Configuration"
+      ]
+    ]
+  },
+  {
+    "title": "Exact and approximate vector indexes",
+    "headers": [
+      "Requirement",
+      "Prefer"
+    ],
+    "rows": [
+      [
+        "Small candidate set and exact recall",
+        "Flat or exact search"
+      ],
+      [
+        "Very large candidate set and low latency",
+        "ANN such as DiskANN or HNSW, depending on service"
+      ],
+      [
+        "Lower memory or compute with small accuracy tradeoff",
+        "Quantized approach where supported"
+      ],
+      [
+        "High-authorization complexity",
+        "Strong metadata filtering plus application authorization"
+      ]
+    ]
+  }
+]

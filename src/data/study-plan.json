@@ -1,0 +1,205 @@
+[
+  {
+    "title": "Six-week plan",
+    "tasks": []
+  },
+  {
+    "title": "Week 1 - Azure and containers",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "Read the official blueprint."
+      },
+      {
+        "topic": "",
+        "details": "Build and run a Docker image locally."
+      },
+      {
+        "topic": "",
+        "details": "Learn ACR repositories, tags, digests, and ACR Tasks."
+      },
+      {
+        "topic": "",
+        "details": "Deploy a custom image to App Service."
+      },
+      {
+        "topic": "",
+        "details": "Practice diagnosing image pull and port failures."
+      }
+    ]
+  },
+  {
+    "title": "Week 2 - Container Apps, KEDA, and AKS",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "Learn revisions, ingress, secrets, and traffic splitting."
+      },
+      {
+        "topic": "",
+        "details": "Configure a Service Bus KEDA rule."
+      },
+      {
+        "topic": "",
+        "details": "Read Container Apps scale behavior and authentication."
+      },
+      {
+        "topic": "",
+        "details": "Read basic AKS manifests."
+      },
+      {
+        "topic": "",
+        "details": "Practice logs, events, probes, selectors, and connectivity diagnosis."
+      }
+    ]
+  },
+  {
+    "title": "Week 3 - Cosmos DB",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "Learn partitioning, RU, consistency, point reads, queries, and indexing."
+      },
+      {
+        "topic": "",
+        "details": "Implement vector policy and vector query."
+      },
+      {
+        "topic": "",
+        "details": "Compare exact and approximate retrieval."
+      },
+      {
+        "topic": "",
+        "details": "Implement a change feed processor with a lease container."
+      },
+      {
+        "topic": "",
+        "details": "Test duplicate processing and idempotency."
+      }
+    ]
+  },
+  {
+    "title": "Week 4 - PostgreSQL and Redis",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "Model relational document metadata."
+      },
+      {
+        "topic": "",
+        "details": "Enable pgvector and write vector queries."
+      },
+      {
+        "topic": "",
+        "details": "Learn index and connection-pool tradeoffs."
+      },
+      {
+        "topic": "",
+        "details": "Implement Redis cache-aside, TTL, and invalidation."
+      },
+      {
+        "topic": "",
+        "details": "Implement and test a tenant-partitioned semantic cache."
+      }
+    ]
+  },
+  {
+    "title": "Week 5 - Messaging, Functions, security, and monitoring",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "Build Service Bus queue and topic scenarios."
+      },
+      {
+        "topic": "",
+        "details": "Practice lock, settlement, retries, and dead-lettering."
+      },
+      {
+        "topic": "",
+        "details": "Build an Event Grid custom event and filtered subscription."
+      },
+      {
+        "topic": "",
+        "details": "Deploy an HTTP and Service Bus-triggered Function."
+      },
+      {
+        "topic": "",
+        "details": "Add Key Vault, App Configuration, managed identity, OpenTelemetry, and KQL."
+      }
+    ]
+  },
+  {
+    "title": "Week 6 - Integration and assessment",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "Complete the capstone."
+      },
+      {
+        "topic": "",
+        "details": "Work through all scenario drills."
+      },
+      {
+        "topic": "",
+        "details": "Create original questions for each weak topic."
+      },
+      {
+        "topic": "",
+        "details": "Take timed mixed assessments."
+      },
+      {
+        "topic": "",
+        "details": "Revisit only topics below the readiness thresholds."
+      },
+      {
+        "topic": "",
+        "details": "Use the Microsoft exam sandbox before scheduling."
+      }
+    ]
+  },
+  {
+    "title": "Daily study loop",
+    "tasks": []
+  },
+  {
+    "title": "Notes format",
+    "tasks": [
+      {
+        "topic": "",
+        "details": "What problem it solves."
+      },
+      {
+        "topic": "",
+        "details": "What it is not designed to solve."
+      },
+      {
+        "topic": "",
+        "details": "Its main reliability guarantee."
+      },
+      {
+        "topic": "",
+        "details": "Its main cost or latency control."
+      },
+      {
+        "topic": "",
+        "details": "Its identity/authentication options."
+      },
+      {
+        "topic": "",
+        "details": "Its scaling mechanism."
+      },
+      {
+        "topic": "",
+        "details": "Its common failure mode."
+      },
+      {
+        "topic": "",
+        "details": "The telemetry that proves health."
+      },
+      {
+        "topic": "",
+        "details": "One service it is commonly confused with."
+      }
+    ]
+  }
+]
